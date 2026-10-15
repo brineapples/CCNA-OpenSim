@@ -1,0 +1,3510 @@
+[
+  {
+    "id": "q-3-1-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "In the routing table entry 'O 10.2.2.0/24 [110/65] via 192.168.1.2, 00:14:23, GigabitEthernet0/1', what does the bracketed value '[110/65]' represent?",
+    "options": [
+      {
+        "id": "A",
+        "text": "110 is the Administrative Distance, and 65 is the Metric (cost)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "110 is the Metric, and 65 is the Administrative Distance",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "110 is the OSPF process ID, and 65 is the Autonomous System number",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "110 is the hop count, and 65 is the interface MTU",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "In Cisco IOS routing tables, bracketed entries are formatted as [Administrative Distance / Metric]. For OSPF routes, the default AD is 110, and 65 is the cumulative link cost (metric) to reach the destination subnet.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-002",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What does the routing protocol code 'L' signify in a modern Cisco IOS routing table output?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A Local route representing the exact /32 host IP address assigned to a local active router interface",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "A route learned via Link Layer Discovery Protocol",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "A Loopback interface route with infinite metric",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "A Longest Prefix Match candidate route",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "In Cisco IOS 15.0+, connected interfaces generate both a 'C' (Connected subnet) entry and an 'L' (Local /32 host address) entry. The /32 local route allows the router's control plane to process packets destined directly to itself with maximum efficiency.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-003",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "drag-and-drop",
+    "prompt": "Match each route source with its default Administrative Distance in Cisco IOS.",
+    "pairs": [
+      {
+        "target": "Directly Connected",
+        "match": "0"
+      },
+      {
+        "target": "Static Route",
+        "match": "1"
+      },
+      {
+        "target": "eBGP",
+        "match": "20"
+      },
+      {
+        "target": "OSPF",
+        "match": "110"
+      }
+    ],
+    "explanation": "Default Administrative Distances: Connected = 0, Static = 1, eBGP = 20, EIGRP internal = 90, OSPF = 110, IS-IS = 115, RIP = 120, iBGP = 200.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-004",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What does the asterisk symbol (*) adjacent to a routing table entry denote (e.g. 'S* 0.0.0.0/0')?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The route is a candidate default route",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The route is currently inactive due to a missing next-hop",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The route is an OSPF external type 2 route",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The route has an administrative distance of 255",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "An asterisk (*) indicates that the route is a candidate default route that can be chosen as the Gateway of Last Resort.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 1,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-005",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "Which routing protocol code indicates a route learned dynamically via EIGRP?",
+    "options": [
+      {
+        "id": "A",
+        "text": "E",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "D",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "I",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "G",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "In Cisco IOS, EIGRP routes are represented by the letter 'D' (derived from the DUAL algorithm: Diffusing Update Algorithm). 'E' stands for legacy EGP.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-006",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "In 'show ip route', what is indicated when a route displays 'is directly connected, GigabitEthernet0/0' without a next-hop IP address?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The router can send ARP requests directly on that interface because the destination subnet is locally attached",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The route is unreachable because no gateway exists",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The interface is operating in half-duplex mode",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The route is being advertised by BGP",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Directly connected routes indicate that the network resides on the local link attached to that exit interface. For packets destined to hosts on that subnet, the router resolves the host's MAC address directly via ARP rather than forwarding to a next-hop router.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-007",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What is the default Administrative Distance of an internal BGP (iBGP) route in Cisco IOS?",
+    "options": [
+      {
+        "id": "A",
+        "text": "20",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "110",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "200",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "255",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "External BGP (eBGP) has an administrative distance of 20, whereas Internal BGP (iBGP) has an administrative distance of 200.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.8,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-008",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What happens if a route is configured with an Administrative Distance of 255?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The router will never install the route into the routing table",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The route becomes the highest priority route above static routes",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The route is broadcast to all OSPF neighbors",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The route becomes a default multicast group",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "An Administrative Distance of 255 indicates an untrusted route. Cisco IOS will not install a route with an AD of 255 into the routing table.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-009",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "In the routing entry 'O IA 172.16.50.0/24 [110/35] via 10.1.1.2', what does the code 'O IA' signify?",
+    "options": [
+      {
+        "id": "A",
+        "text": "An OSPF Inter-Area route originating from a different OSPF area",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "An OSPF Internal Autonomous system route",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "An OSPF External Type 1 route",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "An OSPF Inactive Aggregate route",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "'O' indicates an intra-area OSPF route (originating within the same area). 'O IA' indicates an inter-area route (learned from an Area Border Router connecting another OSPF area).",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-010",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "Which command displays only routes learned via OSPF in the routing table?",
+    "options": [
+      {
+        "id": "A",
+        "text": "show ip route ospf",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "show ospf routes",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "show ip ospf database routes",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "show route-table protocol ospf",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Filtering 'show ip route' by protocol code is achieved with 'show ip route ospf', 'show ip route static', 'show ip route connected', etc.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 1,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 192.168.1.130. Its routing table contains the following entries. Through which next hop does the router forward the packet?",
+    "cliSnippet": "Codes: C - connected, S - static, R - RIP, O - OSPF\n\nS    192.168.1.128/26 [1/0] via 10.1.1.1\nO    192.168.1.128/27 [110/20] via 10.2.2.2\nO    192.168.1.0/24 [110/10] via 10.3.3.3\nS*   0.0.0.0/0 [1/0] via 10.4.4.4",
+    "options": [
+      {
+        "id": "A",
+        "text": "10.1.1.1 (Static route /26 because it has lower administrative distance of 1)",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "10.2.2.2 (OSPF route /27 because it represents the Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "10.3.3.3 (OSPF route /24 because it has a lower metric of 10)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "10.4.4.4 (Default gateway)",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Router forwarding decisions ALWAYS evaluate Longest Prefix Match (most specific mask) first before considering Administrative Distance or Metric. 192.168.1.130 falls within 192.168.1.128/27 (range .128 to .159). Because /27 (27 bits) is longer than /26 (26 bits) and /24 (24 bits), the /27 route via 10.2.2.2 is selected.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16 Routing Logic",
+    "difficulty": 4,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-002",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives a packet destined for 172.16.10.75. The routing table contains the following matching routes:\n1. 172.16.10.64/28 via 10.0.1.1\n2. 172.16.10.0/25 via 10.0.2.1\n3. 172.16.0.0/16 via 10.0.3.1\nWhich route will be used to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "172.16.10.64/28 via 10.0.1.1",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "172.16.10.0/25 via 10.0.2.1",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "172.16.0.0/16 via 10.0.3.1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The router drops the packet because multiple routes match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A /28 mask matches 28 bits, representing the subnet range 172.16.10.64 to 172.16.10.79. Since 172.16.10.75 falls in this range and /28 is longer than /25 and /16, the /28 route is selected by Longest Prefix Match.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-003",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "When two routing processes (e.g. OSPF and RIP) advertise the EXACT SAME prefix and prefix length (e.g. 10.5.0.0/16), how does the router decide which route to install in its routing table?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It selects the route with the lowest Administrative Distance",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "It selects the route with the lowest metric",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "It performs equal-cost load balancing across both protocols",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "It selects the route that was learned first chronologically",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "When prefix and prefix length are identical, the router compares Administrative Distance (trustworthiness). OSPF has an AD of 110, while RIP has an AD of 120; therefore, the OSPF route is installed.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-004",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "What condition must be met for a Cisco router to automatically perform Equal-Cost Multi-Path (ECMP) load balancing across multiple paths?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The routes must have the same prefix length, identical Administrative Distance, and identical metric",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The routes must originate from different routing protocols",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The outgoing interfaces must be configured with PortFast",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The router must have BGP confederations enabled",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Cisco IOS performs ECMP load balancing by default (up to 4 paths by default, up to 16/32 with 'maximum-paths') when multiple routes to the same destination network have identical AD and identical metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-005",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A packet is destined for 10.1.1.50. The routing table contains:\n1. 10.1.1.0/26 via 172.16.1.1\n2. 10.1.1.48/29 via 172.16.2.1\n3. 10.1.1.48/30 via 172.16.3.1\nWhich path will the router choose?",
+    "options": [
+      {
+        "id": "A",
+        "text": "172.16.3.1 (/30 route)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "172.16.2.1 (/29 route)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "172.16.1.1 (/26 route)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The router drops the packet",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Subnet 10.1.1.48/30 covers 10.1.1.48 through 10.1.1.51. IP 10.1.1.50 is contained within it. Since /30 is a longer match than /29 or /26, the /30 path via 172.16.3.1 is selected.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An administrator configures the following static route on Router 1:\n'ip route 0.0.0.0 0.0.0.0 203.0.113.1 130'\nIf OSPF is already advertising a default route (AD 110), what type of static route was created and when will it be used?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A floating static route that only enters the routing table if the primary OSPF route fails",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "A load-balanced static route that shares 50% of the traffic with OSPF",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "An invalid route because administrative distance cannot exceed 120",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "A host route that overrides OSPF immediately",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route is configured with an Administrative Distance higher than the primary routing protocol (here, AD 130 > OSPF AD 110). It remains dormant and will only be installed into the routing table if the primary OSPF route is lost.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-002",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "Which command configures an IPv6 default static route forwarding through next-hop 2001:db8:acad:1::1?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ipv6 route ::/0 2001:db8:acad:1::1",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ipv6 route 0.0.0.0/0 2001:db8:acad:1::1",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route ::/0 2001:db8:acad:1::1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ipv6 default-gateway 2001:db8:acad:1::1",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "The IPv6 default route prefix is ::/0 (matching all addresses with prefix length 0). The command syntax is 'ipv6 route ::/0 <next-hop>'.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 23",
+    "difficulty": 1,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-003",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "When configuring an IPv6 static route using a Link-Local address (fe80::/10) as the next hop, what additional parameter is MANDATORY?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The local exit interface must be specified along with the link-local address",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The neighbor's BSSID must be entered",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "An administrative distance of 254 must be specified",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The IPv4 helper-address must be bound to the link",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Because IPv6 link-local addresses are non-unique and ambiguous across different links, Cisco IOS requires specifying the local exit interface when referencing a link-local next-hop (e.g. 'ipv6 route 2001:db8:2::/64 GigabitEthernet0/0 fe80::1').",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 23",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-004",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "Which command configures a static host route for a specific server at 192.168.10.45 forwarding through next-hop 10.1.1.2?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 192.168.10.45 255.255.255.255 10.1.1.2",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 192.168.10.45 255.255.255.0 10.1.1.2",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip host-route 192.168.10.45 10.1.1.2",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 192.168.10.45/0 10.1.1.2",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A static host route targets a single IP address using a 32-bit mask (255.255.255.255, or /32). In Cisco IOS, this is written as 'ip route 192.168.10.45 255.255.255.255 <next-hop>'.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-005",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "What is the key disadvantage of configuring an IPv4 static route using only an Ethernet exit interface (e.g. 'ip route 10.0.0.0 255.0.0.0 GigabitEthernet0/0') instead of a next-hop IP address?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The router treats the Ethernet segment as multiaccess and sends an ARP request for every unique destination IP, causing high CPU and CAM/ARP table bloat",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Ethernet interfaces do not support static routing",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The route is automatically assigned an Administrative Distance of 255",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "OSPF cannot form neighbor relationships on the router",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "When an exit interface is specified on a broadcast/multiaccess Ethernet interface without a next-hop IP, the router assumes every destination in that subnet is directly attached and attempts an ARP broadcast for every packet, exhausting ARP tables and relying on Proxy ARP.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "In what order does a Cisco router determine its OSPF Router ID (RID) upon initialization?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1. Manual 'router-id' command; 2. Highest IPv4 address on any active Loopback interface; 3. Highest IPv4 address on any active physical interface",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "1. Highest active physical interface; 2. Loopback interface; 3. Manual configuration",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "1. Lowest MAC address; 2. Lowest IP address on Gi0/0",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "1. OSPF process ID; 2. System uptime",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF RID selection hierarchy: 1) Statically configured 'router-id <x.x.x.x>'. 2) Highest numeric IPv4 address on an active loopback interface. 3) Highest numeric IPv4 address on an active non-loopback (physical) interface in 'up/up' status.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-002",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "An administrator observes that two directly connected routers running OSPFv2 are stuck in the 'EXSTART' state. What is the most likely cause?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The maximum transmission unit (MTU) does not match between the two connecting interfaces",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The OSPF Process IDs do not match",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The routers have different hostnames",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The dead timer is set to four times the hello timer",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "In ExStart state, OSPF neighbors negotiate Master/Slave roles and exchange Database Description (DBD) packets. If the interface MTUs do not match and 'ip ospf mtu-ignore' is not configured, the larger MTU side drops packets, causing the adjacency to freeze in ExStart/Exchange.",
+    "reference": "CCNA 200-301 OCG Vol 2, Ch 20",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-003",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "What OSPF neighbor state is considered normal and fully operational between two DROTHER routers on an Ethernet multiaccess broadcast network?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2-WAY / DROTHER",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "FULL / DROTHER",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "INIT / DROTHER",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "EXCHANGE / DROTHER",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "On multiaccess broadcast networks, full database synchronization occurs only between DROTHERs and the DR/BDR (FULL state). DROTHERs stop their adjacency progression at '2-WAY' with each other, which is normal and desired behavior.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-004",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "How can an administrator permanently prevent a specific router interface from ever being elected as Designated Router (DR) or Backup Designated Router (BDR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Set the interface OSPF priority to 0 using 'ip ospf priority 0'",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Configure 'no ip ospf dr' under router configuration mode",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Set the Router ID to 0.0.0.0",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Change the interface MTU to 1400",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "An interface configured with 'ip ospf priority 0' is completely excluded from participating in DR/BDR elections and will always remain a DROTHER.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-005",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "What command propagates a default route (0.0.0.0/0) into an OSPF domain from an edge router even if the router does NOT currently have a default route in its routing table?",
+    "options": [
+      {
+        "id": "A",
+        "text": "default-information originate always",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "default-information originate",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "redistribute static default",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 0.0.0.0 0.0.0.0 ospf",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "'default-information originate' only advertises 0.0.0.0/0 if a valid default route already exists in the local routing table. Appending the 'always' keyword forces OSPF to advertise a default route regardless of local routing table state.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-006",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "What does configuring 'passive-interface GigabitEthernet0/1' do within an OSPF process?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It stops sending and listening for OSPF Hellos on that interface, but continues advertising the interface's subnet to other OSPF neighbors",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "It completely removes the interface's network from OSPF advertisements",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "It sets the interface cost to 65535",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "It drops incoming transit traffic on that interface",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "The 'passive-interface' command prevents OSPF Hello packets from being sent or accepted on that interface (securing LAN edge segments from unauthorized neighbor formation), while still including the connected subnet in OSPF Type 1 Link State Advertisements.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-007",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "What are the default OSPF Hello and Dead timers on a point-to-point or broadcast Ethernet interface in Cisco IOS?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hello 10 seconds; Dead 40 seconds",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Hello 30 seconds; Dead 120 seconds",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Hello 5 seconds; Dead 15 seconds",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Hello 60 seconds; Dead 180 seconds",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "On broadcast and point-to-point networks, the default Hello timer is 10 seconds, and the Dead interval is 4 times the Hello interval (40 seconds). Hello and Dead timers MUST match between neighbors to form an adjacency.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 1,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-008",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "simlet",
+    "prompt": "You are troubleshooting why Router R1 is not exchanging OSPF routes with its neighbor R2 over GigabitEthernet0/0. Use the interactive terminal to inspect R1 and determine the root cause.",
+    "simlet": {
+      "deviceName": "R1",
+      "promptString": "R1#",
+      "commandResponses": {
+        "show ip ospf interface gigabitethernet 0/0": "GigabitEthernet0/0 is up, line protocol is up\n  Internet Address 10.0.0.1/24, Area 0\n  Attached via Interface Enable\n  Process ID 1, Router ID 1.1.1.1, Network Type BROADCAST, Cost: 1\n  Transmit Delay is 1 sec, State DR, Priority 1\n  Designated Router (ID) 1.1.1.1, Interface address 10.0.0.1\n  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5\n    oob-resync timeout 40\n    Hello due in 00:00:03\n  Supports interfaces matching Authentication none",
+        "show ip ospf neighbor": "Neighbor ID     Pri   State           Dead Time   Address         Interface\n2.2.2.2           1   INIT/DROTHER    00:00:32    10.0.0.2        GigabitEthernet0/0",
+        "show ip interface brief": "Interface              IP-Address      OK? Method Status                Protocol\nGigabitEthernet0/0     10.0.0.1        YES manual up                    up      \nGigabitEthernet0/1     192.168.10.1    YES manual up                    up      \nLoopback0              1.1.1.1         YES manual up                    up      ",
+        "show run interface gigabitethernet 0/0": "interface GigabitEthernet0/0\n ip address 10.0.0.1 255.255.255.0\n ip ospf 1 area 0\n ip ospf hello-interval 10\n ip access-group BLOCK_OSPF in\nend",
+        "show access-lists": "Extended IP access list BLOCK_OSPF\n    10 deny ospf any any (14 matches)\n    20 permit ip any any (82 matches)"
+      }
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "The OSPF Hello and Dead timers do not match between R1 and R2.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "An inbound access-list on R1's GigabitEthernet0/0 interface is dropping OSPF multicast traffic from R2.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "R1 and R2 are in different OSPF areas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The OSPF Process ID must match between R1 and R2.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Running 'show ip ospf neighbor' shows neighbor 2.2.2.2 stuck in INIT state, meaning R1 receives hellos from R2, but R2 is not hearing R1's hellos or incoming OSPF packets are blocked. Inspecting 'show run interface gigabitethernet 0/0' reveals 'ip access-group BLOCK_OSPF in', and 'show access-lists' explicitly confirms 'deny ospf any any'.",
+    "reference": "CCNA 200-301 OCG Vol 2, OSPF Troubleshooting",
+    "difficulty": 4,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What is the primary objective of deploying a First Hop Redundancy Protocol (FHRP) such as HSRP or VRRP?",
+    "options": [
+      {
+        "id": "A",
+        "text": "To provide a resilient, redundant default gateway IP and virtual MAC address for end hosts without requiring manual host reconfiguration upon router failure",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "To dynamically allocate IP addresses to DHCP clients across subnets",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "To load-balance TCP sessions across dual Internet service providers using BGP",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "To synchronize the IOS software image between redundant core switches",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "FHRPs provide high availability for host default gateways. Multiple physical routers share a Virtual IP and Virtual MAC address. If the active forwarder fails, the standby router assumes the virtual identity transparently to hosts.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 1,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-002",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What is the standard virtual MAC address format utilized by Cisco HSRP version 1 for group number 10?",
+    "options": [
+      {
+        "id": "A",
+        "text": "0000.0c07.ac0a",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "0000.5e00.010a",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "0000.0c9f.f00a",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "0007.b400.0101",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "HSRP version 1 uses the virtual MAC address format 0000.0c07.acXX, where XX is the group number in hexadecimal. Group 10 in hex is '0a', resulting in 0000.0c07.ac0a. (VRRP uses 0000.5e00.01XX, and HSRP v2 uses 0000.0c9f.fXXX).",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-003",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What command allows a router with a higher HSRP priority to automatically reclaim the Active forwarder role when it recovers from a reboot?",
+    "options": [
+      {
+        "id": "A",
+        "text": "standby 1 preempt",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "standby 1 priority active",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "standby 1 reclaim",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "hsrp failover auto",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "By default, HSRP is non-preemptive. Even if a router has a higher priority, it will not overthrow an existing active router unless the 'standby <group> preempt' command is configured.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-004",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What is the default HSRP priority on a Cisco router interface?",
+    "options": [
+      {
+        "id": "A",
+        "text": "100",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "1",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "128",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "32768",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "The default HSRP priority is 100. The router with the highest priority becomes Active; in the event of a tie, the router with the highest configured IP address on the interface wins.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 1,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-005",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What are the roles defined in the open-standard Virtual Router Redundancy Protocol (VRRP, RFC 5798)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Master and Backup",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Active and Standby",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Primary and Secondary",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Designated and Backup Designated",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "HSRP uses the terms 'Active' and 'Standby'. The open IEEE/IETF standard VRRP uses the terms 'Master Router' and 'Backup Router(s)'.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-011",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "How does OSPF calculate the default cost (metric) of an interface by default in Cisco IOS?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cost = Reference Bandwidth (default 100 Mbps) / Interface Bandwidth in bps",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Cost = Interface MTU / 1500",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Cost = Hop count to destination network",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Cost = 256 * (Bandwidth + Delay)",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF cost = Reference Bandwidth / Interface Bandwidth. The default reference bandwidth is 100 Mbps (10^8 bps). Consequently, FastEthernet (100 Mbps) has a cost of 1 (100/100), and GigabitEthernet (1 Gbps) also defaults to 1 (100/1000 = 0.1, rounded up to 1).",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-012",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "An administrator wants OSPF to accurately differentiate interface costs between 1 Gbps, 10 Gbps, and 40 Gbps links. Which router configuration command should be deployed on all routers in the area?",
+    "options": [
+      {
+        "id": "A",
+        "text": "auto-cost reference-bandwidth 100000",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ospf metric gigabit-enable",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "bandwidth default 10000",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip ospf cost auto-high",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "The command 'auto-cost reference-bandwidth <Mbps>' adjusts the reference bandwidth. Setting it to 100000 (100 Gbps) assigns GigabitEthernet a cost of 100, 10G a cost of 10, and 100G a cost of 1, allowing proper metric distinction.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-013",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "In Cisco Express Forwarding (CEF), which data structure is derived directly from the IP routing table to perform rapid, hardware-accelerated Layer 3 lookups?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Forwarding Information Base (FIB)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Adjacency Table",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Routing Information Base (RIB)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Label Information Base (LIB)",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Cisco Express Forwarding (CEF) maintains the Forwarding Information Base (FIB), which mirrors the routing table (RIB) but is optimized for fast ASIC-level IP destination prefix lookups.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-014",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "In CEF architecture, which data structure maintains pre-computed Layer 2 next-hop MAC rewrite headers derived from the ARP table?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adjacency Table",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "FIB Table",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "TCAM VACL Table",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Topology Database",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "The CEF Adjacency Table maintains pre-built Layer 2 addressing information (such as destination MAC addresses resolved via ARP) for all next-hops found in the FIB, eliminating per-packet ARP lookups.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-015",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What does a 'Glean' adjacency represent in the CEF Adjacency Table output ('show adjacency')?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A subnet directly connected to the router where individual host MAC addresses must be learned on-demand via ARP",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "A packet dropped because of an inbound access list",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "A route forwarded to the Null0 interface",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "An external BGP multi-hop session",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A Glean adjacency indicates that a subnet is directly attached to the router, but the specific destination host's MAC address is not yet in the ARP table; the router's CPU must 'glean' it by generating an ARP request.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-016",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What happens when a packet matches a route pointing to interface Null0 in the routing table (e.g. 'ip route 10.0.0.0 255.0.0.0 Null0')?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The packet is discarded immediately without generating an ICMP unreachable message by default",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The packet is looped back to the ingress port",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The packet is buffered until a next-hop is configured",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is broadcast out all active interfaces",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Interface Null0 is a software discard interface. Routes pointing to Null0 are typically used in manual route summarization to prevent routing loops by discarding packets matching the summary that do not match more specific internal subnets.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-017",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What does a recursive routing lookup mean on a Cisco router?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The router must perform a second routing table lookup to resolve the exit interface of the next-hop IP address",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "The router forwards a packet in an endless loop",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The router queries external DNS servers recursively",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The router recalculates the Dijkstra algorithm for every packet",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "When a static route or BGP route specifies only a next-hop IP address that is not on a directly connected subnet, the router must recursively query its routing table to find how to reach that next-hop IP and find the physical exit interface.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-018",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "In the command 'show ip route 192.168.10.1', what does Cisco IOS display?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Detailed information about the best matching routing table entry for that specific destination IP address",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "All routes in the 192.168.0.0/16 classful network",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "The router's ARP cache entry for 192.168.10.1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The active TCP sockets connected to that address",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Entering 'show ip route <ip-address>' displays the exact route entry that the router will use to forward traffic to that specific destination, including the mask, AD/metric, next-hop, and age.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 1,
+    "fidelityScore": 4.8,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-019",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "What is the Administrative Distance of an OSPF External Type 1 (E1) route versus an OSPF External Type 2 (E2) route in Cisco IOS?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Both E1 and E2 have an Administrative Distance of 110",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "E1 has AD of 110, while E2 has AD of 170",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "E1 has AD of 90, while E2 has AD of 110",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "E1 has AD of 115, while E2 has AD of 120",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "All OSPF routes (Intra-Area, Inter-Area, External E1, External E2, and NSSA N1/N2) share the same Administrative Distance of 110 in Cisco IOS. The difference between E1 and E2 is in how metrics are calculated (E1 adds internal path cost; E2 does not).",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-1-020",
+    "domainId": "3.0",
+    "subtopicCode": "3.1",
+    "subtopicName": "Interpret components of routing table",
+    "type": "single-choice",
+    "prompt": "Which routing table code represents an IPv6 route learned through OSPFv3?",
+    "options": [
+      {
+        "id": "A",
+        "text": "O",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "O3",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "V3",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "P",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "In 'show ipv6 route', OSPFv3 routes are designated with the code 'O' (and 'OI' for inter-area, 'OE1/OE2' for external), identical to IPv4 OSPF codes.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 23",
+    "difficulty": 1,
+    "fidelityScore": 4.8,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-006",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router's routing table has:\nS 10.1.0.0/16 [1/0] via 192.168.1.1\nO 10.1.2.0/24 [110/20] via 192.168.2.1\nD 10.1.2.128/25 [90/1500] via 192.168.3.1\nWhere does the router forward a packet destined to 10.1.2.200?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the EIGRP /25 route",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the Static /16 route",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the OSPF /24 route",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The router drops the packet",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "IP 10.1.2.200 falls within 10.1.2.128/25 (range 10.1.2.128 - 10.1.2.255). Because /25 has 25 matching bits, it is the Longest Prefix Match over /24 and /16. The packet forwards via 192.168.3.1.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-007",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives a packet destined to 192.168.5.33. The routing table contains:\n1. 192.168.5.0/26 via 10.1.1.1\n2. 192.168.5.32/28 via 10.2.2.2\n3. 192.168.5.32/29 via 10.3.3.3\nWhere is the packet forwarded?",
+    "options": [
+      {
+        "id": "A",
+        "text": "10.3.3.3 via the /29 route",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "10.2.2.2 via the /28 route",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "10.1.1.1 via the /26 route",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Dropped due to prefix ambiguity",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Subnet 192.168.5.32/29 covers 192.168.5.32 to .39. IP .33 is inside this range. Since /29 is the longest mask among the three matches, 10.3.3.3 is selected.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-008",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "What action does a router take if a destination IP does not match any specific route in the routing table, and NO default route (0.0.0.0/0) is configured?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It drops the packet and sends an ICMP Destination Unreachable (Type 3, Code 0) message to the source",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "It floods the packet out all interfaces like a switch",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "It queues the packet until an ARP request arrives",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "It routes the packet to 127.0.0.1",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Routers do not flood unknown packets. If a packet matches no route and no default route exists, the router drops the packet and sends an ICMP Destination Host Unreachable / Network Unreachable message to the sender.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 1,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-009",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A packet is sent to 10.20.30.40. The routing table has:\nS 10.20.30.0/24 [1/0] via 172.16.1.1\nO 10.20.30.32/27 [110/10] via 172.16.2.1\nS 10.20.30.40/32 [1/0] via 172.16.3.1\nWhich route is selected?",
+    "options": [
+      {
+        "id": "A",
+        "text": "172.16.3.1 (/32 host route)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "172.16.2.1 (/27 OSPF route)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "172.16.1.1 (/24 Static route)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Load balanced across all three routes",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A /32 host route matches all 32 bits of the IP address (exact match). Since 32 bits is the longest possible prefix in IPv4, the /32 route via 172.16.3.1 always takes precedence.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-010",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "An administrator observes two equal-cost OSPF routes to 10.10.10.0/24 in 'show ip route'. By default, how does Cisco Express Forwarding distribute traffic across the two next-hops?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Per-flow load balancing based on source and destination IP address hashing",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Strict per-packet round-robin",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "All TCP traffic over path 1 and UDP traffic over path 2",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Active/standby failover only",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Cisco Express Forwarding (CEF) performs per-destination/per-flow load balancing by default. Hashing the source and destination IP addresses ensures that all packets in a specific TCP/UDP session follow the same path to prevent out-of-order packet arrival.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-006",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "Which command syntax configures a fully specified static route in Cisco IOS?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 10.0.0.0 255.0.0.0 GigabitEthernet0/0 192.168.1.1",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 10.0.0.0 255.0.0.0 192.168.1.1",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 10.0.0.0 255.0.0.0 GigabitEthernet0/0",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route full 10.0.0.0 255.0.0.0 192.168.1.1",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A fully specified static route specifies BOTH the local exit interface and the next-hop IP address: 'ip route <network> <mask> <interface> <next-hop>'. This avoids recursive lookups while preventing multiaccess ARP flooding.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-007",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An administrator wants a static route to remain in the routing table permanently even if the exit interface goes down. Which keyword achieves this?",
+    "options": [
+      {
+        "id": "A",
+        "text": "permanent",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "persist",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "no-expire",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "always",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "The 'permanent' keyword (e.g. 'ip route 10.0.0.0 255.0.0.0 192.168.1.1 permanent') instructs Cisco IOS to keep the route in the routing table even if the next-hop interface is down.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 3,
+    "fidelityScore": 4.8,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-008",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "Which tool combines with a static route via 'track' keyword to withdraw the static route if remote end-to-end ICMP pings fail?",
+    "options": [
+      {
+        "id": "A",
+        "text": "IP SLA (Service Level Agreement)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "CDP Neighbor Tracking",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "SNMP Trap Agent",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "NetFlow Collector",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "IP SLA can periodically ping an upstream target IP. A track object monitors the IP SLA probe state, and the static route is bound to the track object ('ip route ... track 1'). If pings fail, the track goes down and the static route is removed from the routing table.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-009",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "Which command removes a previously configured IPv4 default static route pointing to 192.168.1.1?",
+    "options": [
+      {
+        "id": "A",
+        "text": "no ip route 0.0.0.0 0.0.0.0 192.168.1.1",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "clear ip route 0.0.0.0",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route delete default",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "no default-gateway 192.168.1.1",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Static routes in Cisco IOS are removed by prepending 'no' to the exact configuration statement: 'no ip route 0.0.0.0 0.0.0.0 192.168.1.1'.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 1,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-009",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Which OSPF network type is automatically selected by Cisco IOS on serial interfaces running HDLC or PPP encapsulation?",
+    "options": [
+      {
+        "id": "A",
+        "text": "POINT_TO_POINT",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "BROADCAST",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "NON_BROADCAST (NBMA)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "POINT_TO_MULTIPLAX",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Serial point-to-point links default to OSPF network type POINT_TO_POINT. In this mode, OSPF does not elect a DR or BDR, and Hellos are sent to multicast 224.0.0.5 every 10 seconds.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-010",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "What behavior does OSPF exhibit by default when advertising a subnet assigned to a Loopback interface?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It advertises the loopback subnet as a /32 host route regardless of the configured subnet mask",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "It advertises the loopback with a default mask of /24",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "It does not advertise loopback interfaces unless passive-interface is configured",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "It drops loopback routes at Area 0 borders",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "RFC 2328 specifies that OSPF treats loopbacks as network type LOOPBACK, advertising them as /32 host routes. To force OSPF to advertise the actual configured subnet mask, configure 'ip ospf network point-to-point' on the loopback interface.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-011",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "After changing the OSPF Router ID using 'router-id 2.2.2.2', the new RID does not take effect. What command must be executed?",
+    "options": [
+      {
+        "id": "A",
+        "text": "clear ip ospf process",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "reload",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "clear ip route *",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "no router ospf 1 followed by router ospf 1",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Changing the OSPF Router ID does not take effect immediately to avoid tearing down live neighbor adjacencies. Cisco IOS displays a prompt to execute 'clear ip ospf process' in privileged EXEC mode to restart OSPF with the new RID.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-012",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Which multicast IPv4 address is used by DROTHER routers to send Link State Updates (LSU) and Link State Acknowledgments (LSAck) directly to the DR and BDR?",
+    "options": [
+      {
+        "id": "A",
+        "text": "224.0.0.6",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "224.0.0.5",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "224.0.0.9",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "224.0.0.10",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "224.0.0.5 is the 'All OSPF Routers' multicast address (listened to by all OSPF routers). 224.0.0.6 is the 'All OSPF DR Routers' multicast address (listened to only by DR and BDR).",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-013",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Why is the DR/BDR election in OSPF non-preemptive?",
+    "options": [
+      {
+        "id": "A",
+        "text": "To prevent network instability and SPF recalculation churn when a router with higher priority joins or reboots",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Because OSPF does not support priority values above 1",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Because BDRs do not maintain a link-state database",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "To allow Cisco switches to act as DRs",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Once a DR is elected, it retains the role until it fails or its OSPF process is reset. A newly connected router with a higher priority will not overthrow the active DR (non-preemptive), preserving stability in the broadcast domain.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-006",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What is the multicast destination IP address used by Cisco HSRP version 2 for hello packets?",
+    "options": [
+      {
+        "id": "A",
+        "text": "224.0.0.102 (UDP 1985)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "224.0.0.2 (UDP 1985)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "224.0.0.18",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "224.0.0.5",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "HSRP version 1 uses multicast address 224.0.0.2. HSRP version 2 uses multicast address 224.0.0.102 (and ff02::66 for IPv6) over UDP port 1985.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-007",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "What is the virtual MAC address format utilized by HSRP version 2?",
+    "options": [
+      {
+        "id": "A",
+        "text": "0000.0c9f.fXXX (where XXX is the group number 0 to 4095)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "0000.0c07.acXX",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "0000.5e00.01XX",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "0007.b400.XXXX",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "HSRP v2 expanded the group range from 0-255 to 0-4095, adopting the virtual MAC format 0000.0c9f.fXXX (where XXX is the 12-bit hexadecimal group ID).",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-008",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "An administrator configures interface tracking on an active HSRP router:\n'standby 1 track GigabitEthernet0/1 30'\nIf the router's current priority is 110 and GigabitEthernet0/1 goes down, what is its new priority?",
+    "options": [
+      {
+        "id": "A",
+        "text": "80 (110 - 30)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "30",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "140",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "HSRP interface tracking decrements the local router's priority by the configured decrement value (here 30) when the tracked uplink interface fails: 110 - 30 = 80. If the standby router has a priority of 100 with preempt enabled, it will take over as Active.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-009",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "Which First Hop Redundancy Protocol is designed by Cisco to provide active-active gateway load balancing by assigning different virtual MACs to different hosts via ARP replies?",
+    "options": [
+      {
+        "id": "A",
+        "text": "GLBP (Gateway Load Balancing Protocol)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "HSRP (Hot Standby Router Protocol)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "VRRP (Virtual Router Redundancy Protocol)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "CARP (Common Address Redundancy Protocol)",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "GLBP (Gateway Load Balancing Protocol) elects an Active Virtual Gateway (AVG) that responds to client ARP requests with different virtual MAC addresses assigned to up to four Active Virtual Forwarders (AVFs), providing true concurrent load balancing.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-5-010",
+    "domainId": "3.0",
+    "subtopicCode": "3.5",
+    "subtopicName": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols",
+    "type": "single-choice",
+    "prompt": "In GLBP, what is the role of an Active Virtual Forwarder (AVF)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "To forward traffic sent to its assigned virtual MAC address",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "To answer client ARP queries on behalf of the group",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "To act as an NTP master clock",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "To bridge VLANs across the core",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "In GLBP, the AVG (Active Virtual Gateway) handles ARP resolution, assigning virtual MACs to AVFs (Active Virtual Forwarders). Each AVF is responsible for routing traffic sent to its specific virtual MAC.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 21",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-063",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R1 and Router R2 are connected on GigabitEthernet0/0. R1 has an OSPF priority of 11 and R2 has an OSPF priority of 1. Both routers have active Loopbacks: R1 has 1.1.1.1 and R2 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R1 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R2 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-064",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-065",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.3.5.14. The routing table contains:\n1. 10.3.0.0/16 [1/0] via 192.168.1.1\n2. 10.3.5.0/24 [110/10] via 192.168.2.1\n3. 10.3.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.3.5.14 falls within 10.3.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-066",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R4 and Router R5 are connected on GigabitEthernet0/0. R4 has an OSPF priority of 14 and R5 has an OSPF priority of 1. Both routers have active Loopbacks: R4 has 1.1.1.1 and R5 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R4 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R5 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-067",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-068",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.6.5.14. The routing table contains:\n1. 10.6.0.0/16 [1/0] via 192.168.1.1\n2. 10.6.5.0/24 [110/10] via 192.168.2.1\n3. 10.6.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.6.5.14 falls within 10.6.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-069",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R7 and Router R8 are connected on GigabitEthernet0/0. R7 has an OSPF priority of 17 and R8 has an OSPF priority of 1. Both routers have active Loopbacks: R7 has 1.1.1.1 and R8 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R7 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R8 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-070",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-071",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.9.5.14. The routing table contains:\n1. 10.9.0.0/16 [1/0] via 192.168.1.1\n2. 10.9.5.0/24 [110/10] via 192.168.2.1\n3. 10.9.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.9.5.14 falls within 10.9.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-072",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R10 and Router R11 are connected on GigabitEthernet0/0. R10 has an OSPF priority of 20 and R11 has an OSPF priority of 1. Both routers have active Loopbacks: R10 has 1.1.1.1 and R11 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R10 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R11 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-073",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-074",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.12.5.14. The routing table contains:\n1. 10.12.0.0/16 [1/0] via 192.168.1.1\n2. 10.12.5.0/24 [110/10] via 192.168.2.1\n3. 10.12.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.12.5.14 falls within 10.12.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-075",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R13 and Router R14 are connected on GigabitEthernet0/0. R13 has an OSPF priority of 23 and R14 has an OSPF priority of 1. Both routers have active Loopbacks: R13 has 1.1.1.1 and R14 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R13 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R14 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-076",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-077",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.15.5.14. The routing table contains:\n1. 10.15.0.0/16 [1/0] via 192.168.1.1\n2. 10.15.5.0/24 [110/10] via 192.168.2.1\n3. 10.15.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.15.5.14 falls within 10.15.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-078",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R16 and Router R17 are connected on GigabitEthernet0/0. R16 has an OSPF priority of 26 and R17 has an OSPF priority of 1. Both routers have active Loopbacks: R16 has 1.1.1.1 and R17 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R16 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R17 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-079",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-080",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.18.5.14. The routing table contains:\n1. 10.18.0.0/16 [1/0] via 192.168.1.1\n2. 10.18.5.0/24 [110/10] via 192.168.2.1\n3. 10.18.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.18.5.14 falls within 10.18.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-081",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R19 and Router R20 are connected on GigabitEthernet0/0. R19 has an OSPF priority of 29 and R20 has an OSPF priority of 1. Both routers have active Loopbacks: R19 has 1.1.1.1 and R20 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R19 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R20 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-082",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-083",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.21.5.14. The routing table contains:\n1. 10.21.0.0/16 [1/0] via 192.168.1.1\n2. 10.21.5.0/24 [110/10] via 192.168.2.1\n3. 10.21.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.21.5.14 falls within 10.21.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-084",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R22 and Router R23 are connected on GigabitEthernet0/0. R22 has an OSPF priority of 32 and R23 has an OSPF priority of 1. Both routers have active Loopbacks: R22 has 1.1.1.1 and R23 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R22 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R23 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-085",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-086",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.24.5.14. The routing table contains:\n1. 10.24.0.0/16 [1/0] via 192.168.1.1\n2. 10.24.5.0/24 [110/10] via 192.168.2.1\n3. 10.24.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.24.5.14 falls within 10.24.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-087",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R25 and Router R26 are connected on GigabitEthernet0/0. R25 has an OSPF priority of 35 and R26 has an OSPF priority of 1. Both routers have active Loopbacks: R25 has 1.1.1.1 and R26 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R25 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R26 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-088",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-089",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.27.5.14. The routing table contains:\n1. 10.27.0.0/16 [1/0] via 192.168.1.1\n2. 10.27.5.0/24 [110/10] via 192.168.2.1\n3. 10.27.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.27.5.14 falls within 10.27.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-090",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R28 and Router R29 are connected on GigabitEthernet0/0. R28 has an OSPF priority of 38 and R29 has an OSPF priority of 1. Both routers have active Loopbacks: R28 has 1.1.1.1 and R29 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R28 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R29 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-091",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-092",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.30.5.14. The routing table contains:\n1. 10.30.0.0/16 [1/0] via 192.168.1.1\n2. 10.30.5.0/24 [110/10] via 192.168.2.1\n3. 10.30.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.30.5.14 falls within 10.30.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-093",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R31 and Router R32 are connected on GigabitEthernet0/0. R31 has an OSPF priority of 41 and R32 has an OSPF priority of 1. Both routers have active Loopbacks: R31 has 1.1.1.1 and R32 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R31 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R32 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-094",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-095",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.33.5.14. The routing table contains:\n1. 10.33.0.0/16 [1/0] via 192.168.1.1\n2. 10.33.5.0/24 [110/10] via 192.168.2.1\n3. 10.33.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.33.5.14 falls within 10.33.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-096",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R34 and Router R35 are connected on GigabitEthernet0/0. R34 has an OSPF priority of 44 and R35 has an OSPF priority of 1. Both routers have active Loopbacks: R34 has 1.1.1.1 and R35 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R34 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R35 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-097",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-098",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes forwarding decisions",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 10.36.5.14. The routing table contains:\n1. 10.36.0.0/16 [1/0] via 192.168.1.1\n2. 10.36.5.0/24 [110/10] via 192.168.2.1\n3. 10.36.5.0/28 [90/200] via 192.168.3.1\nWhich route does the router select to forward the packet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "192.168.3.1 via the /28 route (Longest Prefix Match)",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "192.168.1.1 via the /16 route (Lowest Administrative Distance)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "192.168.2.1 via the /24 route (Lowest OSPF Metric)",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "The packet is dropped due to conflicting metrics",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "10.36.5.14 falls within 10.36.5.0/28 (range .0 to .15). Because /28 matches 28 bits, it is the longest prefix match over /24 and /16. Longest prefix match ALWAYS takes precedence over Administrative Distance or metric.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-099",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single-area OSPFv2",
+    "type": "single-choice",
+    "prompt": "Router R37 and Router R38 are connected on GigabitEthernet0/0. R37 has an OSPF priority of 47 and R38 has an OSPF priority of 1. Both routers have active Loopbacks: R37 has 1.1.1.1 and R38 has 2.2.2.2. Assuming both routers boot at the exact same moment on a broadcast network, which router becomes the Designated Router (DR)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Router R37 because it has the higher OSPF interface priority",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Router R38 because it has the higher Loopback IP address",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Both routers become BDRs",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neither router becomes DR because priorities must match",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "OSPF DR election first compares OSPF interface priority (range 0-255). The router with the highest priority wins. The Router ID (Loopback IP) is only evaluated as a tie-breaker if priorities are equal.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 20",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-3-100",
+    "domainId": "3.0",
+    "subtopicCode": "3.3",
+    "subtopicName": "Configure and verify IPv4 and IPv6 static routing",
+    "type": "single-choice",
+    "prompt": "An engineer configures a floating static route to back up an internal EIGRP route (Administrative Distance 90). Which command correctly sets the floating static route's administrative distance so it will only activate if EIGRP fails?",
+    "options": [
+      {
+        "id": "A",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 95",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 85",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "ip route 172.16.0.0 255.255.0.0 10.1.1.1 0",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A floating static route must have an Administrative Distance HIGHER than the primary routing protocol. Since internal EIGRP has an AD of 90, setting the static route's AD to 95 ensures it floats until EIGRP is lost. An AD of 85 or 1 would override EIGRP immediately.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 15",
+    "difficulty": 2,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  }
+]

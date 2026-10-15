@@ -1,235 +1,244 @@
 /**
- * CCNA OpenSim - Automated Google Forms & Master Sheet Generator
+ * CCNA OpenSim - Automated Google Forms Question Audit & Review Generator
+ * 
+ * Purpose:
+ * Generates official Peer-Review Google Forms populated with AI-generated draft questions
+ * from the CCNA OpenSim 400-question bank. Community contributors review, rate, and fact-check
+ * the pre-generated questions rather than submitting braindumps.
  * 
  * Instructions:
- * 1. Go to https://script.new in your browser.
- * 2. Delete any code in the editor, and paste this entire script.
- * 3. Click the "Run" button (triangle icon) at the top.
- * 4. Grant permissions when prompted.
+ * 1. Open https://script.new in your browser.
+ * 2. Paste this entire script into the editor.
+ * 3. Click "Run" (generateReviewForms).
+ * 4. Grant Google permissions when prompted.
  * 
  * Result:
- * - Automatically creates "CCNA OpenSim - Master Question Bank" Google Sheet.
- * - Programmatically builds all 6 Google Forms with all CCNA v1.1 subtopics.
- * - Automatically links all 6 forms to the Master Google Sheet.
- * - Logs all 6 live URLs in the Execution Log!
+ * - Automatically creates the "CCNA OpenSim - Community Audit Sheet" Google Sheet.
+ * - Builds 6 Domain Review Forms containing pre-loaded questions with answer keys,
+ *   explanations, and technical review metrics (Fact Check, Fidelity 1-5, Difficulty 1-5, Edits).
+ * - Links responses directly to the Master Google Sheet.
  */
 
-function generateAllCCNAForms() {
-  Logger.log("🚀 Starting CCNA OpenSim Form & Sheet Generation...");
+function generateReviewForms() {
+  Logger.log("🚀 Starting CCNA OpenSim Question Audit Form Generator...");
 
-  // 1. Create the Master Google Sheet
-  const sheet = SpreadsheetApp.create("CCNA OpenSim - Master Question Bank");
-  const sheetId = sheet.getId();
-  const sheetUrl = sheet.getUrl();
-  Logger.log("✅ Created Master Google Sheet: " + sheetUrl);
+  // 1. Create the Master Tracking Sheet
+  var ss = SpreadsheetApp.create("CCNA OpenSim - Community Review Results");
+  var sheetId = ss.getId();
+  var sheetUrl = ss.getUrl();
+  Logger.log("✅ Created Master Audit Google Sheet: " + sheetUrl);
 
-  // Setup initial template headers in Sheet1
-  const defaultSheet = sheet.getSheets()[0];
-  defaultSheet.setName("Review Queue & Instructions");
-  defaultSheet.appendRow([
-    "Review Status Options", "Approved", "Pending", "Needs Work", "Rejected"
-  ]);
-  defaultSheet.appendRow([
-    "Instructions", 
-    "Forms will automatically create tabs when responses arrive. Use the sync script in GitHub to pull rows marked 'Approved'."
+  var instructionsSheet = ss.getSheets()[0];
+  instructionsSheet.setName("Review Summary & Pipeline");
+  instructionsSheet.appendRow([
+    "Domain", "Question ID", "Topic", "Factual Accuracy", "Avg Fidelity", "Avg Difficulty", "Recommended Edits", "Review Status"
   ]);
 
-  // 2. Blueprint Domains & Subtopics (CCNA v1.1 Official)
-  const domains = [
-    {
-      id: "1.0",
-      title: "1.0 Network Fundamentals",
-      subtopics: [
-        "1.1 Role and function of network components (Routers, Switches, NGFW/IPS, APs, PoE)",
-        "1.2 Network topology architectures (Two-tier, Three-tier, Spine-leaf, SOHO, Cloud)",
-        "1.3 Cabling & physical interfaces (Single-mode, Multimode, Copper)",
-        "1.4 Interface and cable issues (Collisions, errors, duplex/speed mismatch)",
-        "1.5 Compare TCP to UDP",
-        "1.6 Configure and verify IPv4 addressing and subnetting",
-        "1.7 Describe private IPv4 addressing (RFC 1918)",
-        "1.8/1.9 IPv6 addressing, prefixes, and types (Global, Link-Local, Unique Local, EUI-64)",
-        "1.10 Verify IP parameters for Client OS",
-        "1.11 Describe wireless principles (SSID, RF, Channels, Encryption)",
-        "1.12 Explain virtualization fundamentals (Hypervisors, Containers, and VRFs)",
-        "1.13 Describe switching concepts (MAC learning, aging, flooding, switching)"
+  // Sample curated questions per domain from the 400-question bank for audit clusters
+  var sampleReviewData = {
+    "1.0": {
+      title: "1.0 Network Fundamentals - Question Audit Form",
+      description: "Audit and verify pre-generated CCNA v1.1 questions covering Subnetting, IPv6, Cabling, TCP/UDP, and Virtualization (VRFs).",
+      questions: [
+        {
+          id: "q-1-1-001",
+          topic: "1.1 Network Components (NGFW vs L3 Switch)",
+          prompt: "An administrator is designing a campus network and needs a device that inspects traffic up to Layer 7, detects zero-day exploits, and decrypts TLS traffic for malware inspection. Which component is required?",
+          options: "A) Layer 3 Distribution Switch\nB) Next-Generation Firewall (NGFW) [CORRECT]\nC) Wireless LAN Controller (WLC)\nD) Stateful Packet Inspection (SPI) Router",
+          explanation: "Next-Generation Firewalls (NGFW) provide deep packet inspection up to Layer 7, integrated IPS, TLS/SSL decryption, and advanced threat intelligence, unlike traditional L3 switches or legacy SPI routers.",
+          reference: "Cisco Press CCNA 200-301 Official Cert Guide Vol 1, Ch 1"
+        },
+        {
+          id: "q-1-6-001",
+          topic: "1.6 IPv4 Subnetting",
+          prompt: "A network engineer must allocate a subnet from 172.16.0.0/16 that supports at least 58 usable host IP addresses while minimizing wasted address space. Which prefix length should be selected?",
+          options: "A) /25\nB) /26 [CORRECT]\nC) /27\nD) /28",
+          explanation: "To support 58 usable hosts: 2^6 - 2 = 62 usable hosts. A /26 provides 62 hosts, satisfying the requirement with minimal waste compared to /25 (126 hosts).",
+          reference: "CCNA 200-301 OCG Vol 1, Ch 14"
+        },
+        {
+          id: "q-1-12-001",
+          topic: "1.12 Virtualization & VRFs (CCNA v1.1)",
+          prompt: "A service provider needs to host two separate enterprise clients on a single physical core router. Both clients use overlapping IP address space (10.0.0.0/8). Which virtualization technology segments the routing table on the router?",
+          options: "A) VLAN (Virtual Local Area Network)\nB) VRF (Virtual Routing and Forwarding) [CORRECT]\nC) Type 1 Hypervisor\nD) Docker Container Engine",
+          explanation: "VRF functions like a virtual router inside a physical router, allowing multiple routing tables to coexist simultaneously with overlapping IP addresses.",
+          reference: "CCNA 200-301 v1.1 Topic 1.12"
+        }
       ]
     },
-    {
-      id: "2.0",
-      title: "2.0 Network Access",
-      subtopics: [
-        "2.1 Configure and verify VLANs (Access ports data/voice, Default VLAN, InterVLAN)",
-        "2.2 Configure and verify interswitch connectivity (Trunk ports, 802.1Q, Native VLAN)",
-        "2.3 Configure and verify Layer 2 discovery protocols (CDP and LLDP)",
-        "2.4 Configure and verify EtherChannel (Layer 2/Layer 3 LACP)",
-        "2.5 Interpret basic operations of Rapid PVST+ (Root bridge, Root port, PortFast, BPDU Guard)",
-        "2.6 Describe Cisco Wireless Architectures and AP modes",
-        "2.7 Physical infrastructure connections of WLAN components (AP, WLC, LAG)",
-        "2.8 Network device management access (Console, SSH, Telnet, AAA, Cloud-managed)",
-        "2.9 Interpret wireless LAN GUI configuration for client connectivity"
+    "2.0": {
+      title: "2.0 Network Access - Question Audit Form",
+      description: "Audit and verify pre-generated CCNA v1.1 questions covering VLANs, 802.1Q Trunks, EtherChannel (LACP), Rapid PVST+, and Wireless Architectures.",
+      questions: [
+        {
+          id: "q-2-2-001",
+          topic: "2.2 Interswitch Connectivity / DTP",
+          prompt: "An administrator executes 'show interfaces trunk' on Switch A and observes that interface Gi0/1 is missing from the trunk list. Administrative mode is dynamic desirable, operational mode is static access. What is the root cause?",
+          options: "A) The remote switch port is set to 'switchport mode access' [CORRECT]\nB) The native VLAN has not been changed from default VLAN 1\nC) The remote port is set to dynamic auto\nD) DTP negotiation failed because the remote side is configured as access [CORRECT]",
+          explanation: "When an interface is set to dynamic desirable, DTP negotiates a trunk unless the neighbor is explicitly set to access mode ('switchport mode access').",
+          reference: "CCNA 200-301 OCG Vol 1, Ch 9"
+        },
+        {
+          id: "q-2-5-001",
+          topic: "2.5 Rapid PVST+ Port States",
+          prompt: "In an 802.1w Rapid Spanning Tree Protocol (RSTP / Rapid PVST+) topology, which port state corresponds to the legacy 802.1D Blocking, Listening, and Disabled states?",
+          options: "A) Discarding [CORRECT]\nB) Learning\nC) Forwarding\nD) Alternate",
+          explanation: "802.1w RSTP collapsed the 802.1D Disabled, Blocking, and Listening states into a single port state: 'Discarding'.",
+          reference: "CCNA 200-301 OCG Vol 1, Ch 11"
+        }
       ]
     },
-    {
-      id: "3.0",
-      title: "3.0 IP Connectivity",
-      subtopics: [
-        "3.1 Interpret components of routing table (Protocol codes, prefix, mask, next hop, AD, metric)",
-        "3.2 Router forwarding decisions (Longest prefix match, AD, metric)",
-        "3.3 Configure and verify IPv4 and IPv6 static routing (Default, network, host, floating static)",
-        "3.4 Configure and verify single-area OSPFv2 (Adjacencies, DR/BDR, Router ID, point-to-point)",
-        "3.5 First Hop Redundancy Protocols (HSRP concepts and operations)"
+    "3.0": {
+      title: "3.0 IP Connectivity - Question Audit Form",
+      description: "Audit and verify pre-generated CCNA v1.1 questions covering Routing Logic, Longest Prefix Match, Static Routing, and OSPFv2 Single Area.",
+      questions: [
+        {
+          id: "q-3-2-001",
+          topic: "3.2 Forwarding Decisions (Longest Prefix Match)",
+          prompt: "A router receives an IPv4 packet destined for 192.168.1.130. Its routing table contains:\nS 192.168.1.128/26 via 10.1.1.1\nO 192.168.1.128/27 via 10.2.2.2\nO 192.168.1.0/24 via 10.3.3.3\nThrough which next hop does the router forward the packet?",
+          options: "A) 10.1.1.1 (/26 Static Route)\nB) 10.2.2.2 (/27 OSPF Route - Longest Prefix Match) [CORRECT]\nC) 10.3.3.3 (/24 OSPF Route)\nD) 10.4.4.4 (Default gateway)",
+          explanation: "Router forwarding decisions ALWAYS evaluate Longest Prefix Match (most specific mask) first before considering Administrative Distance or Metric. /27 is longer than /26 or /24.",
+          reference": "CCNA 200-301 OCG Vol 1, Ch 16"
+        },
+        {
+          id: "q-3-4-002",
+          topic: "3.4 OSPFv2 Troubleshooting (ExStart State)",
+          prompt: "Two directly connected routers running OSPFv2 are stuck in the 'EXSTART' state. What is the most likely cause?",
+          options: "A) The maximum transmission unit (MTU) does not match between connecting interfaces [CORRECT]\nB) The OSPF Process IDs do not match\nC) The routers have different hostnames\nD) The dead timer is set to four times the hello timer",
+          explanation: "In ExStart state, neighbors exchange DBD packets. If MTUs do not match and 'ip ospf mtu-ignore' is not configured, the adjacency freezes in ExStart.",
+          reference": "CCNA 200-301 OCG Vol 2, Ch 20"
+        }
       ]
     },
-    {
-      id: "4.0",
-      title: "4.0 IP Services",
-      subtopics: [
-        "4.1 Configure and verify inside source NAT using static and pools (PAT / Overload)",
-        "4.2 Configure and verify NTP operating in client and server mode",
-        "4.3 Explain role of DHCP and DNS within the network",
-        "4.4 Explain function of SNMP in network operations (v2c vs v3, Traps vs Informs)",
-        "4.5 Describe syslog features (Severity levels 0-7, facilities)",
-        "4.6 Configure and verify DHCP client and relay (ip helper-address)",
-        "4.7 Explain forwarding per-hop behavior for QoS (Classification, marking, queuing, policing)",
-        "4.8 Configure network devices for remote access using SSH",
-        "4.9 Describe capabilities and functions of TFTP/FTP in the network"
+    "4.0": {
+      title: "4.0 IP Services - Question Audit Form",
+      description: "Audit and verify pre-generated CCNA v1.1 questions covering NAT/PAT, NTP, DHCP Relay, and QoS PHB.",
+      questions: [
+        {
+          id: "q-4-1-001",
+          topic: "4.1 Inside Source NAT (PAT / Overload)",
+          prompt: "Which Cisco IOS command keyword enables Port Address Translation (PAT) when translating internal private addresses to a single public IP address assigned to interface GigabitEthernet 0/1?",
+          options: "A) ip nat inside source list 1 interface gigabitethernet 0/1 overload [CORRECT]\nB) ip nat inside source list 1 interface gigabitethernet 0/1 pat-enable\nC) ip nat pool PUBLIC_POOL 203.0.113.1 203.0.113.1 netmask 255.255.255.252\nD) ip nat inside source static tcp 192.168.1.10 80 203.0.113.1 80",
+          explanation: "The 'overload' keyword instructs Cisco IOS to track source L4 port numbers, enabling Port Address Translation (PAT).",
+          reference": "CCNA 200-301 OCG Vol 2, Ch 10"
+        }
       ]
     },
-    {
-      id: "5.0",
-      title: "5.0 Security Fundamentals",
-      subtopics: [
-        "5.1 Define key security concepts (Threats, vulnerabilities, exploits, mitigations)",
-        "5.2 Describe security program elements (User awareness, physical access control)",
-        "5.3 Configure and verify device access control using local passwords",
-        "5.4 Password policy elements, complexity, and alternatives (MFA, certificates, biometrics)",
-        "5.5 Describe IPsec remote access and site-to-site VPNs",
-        "5.6 Configure and verify Access Control Lists (Standard and Extended ACLs)",
-        "5.7 Configure and verify Layer 2 security features (DHCP snooping, DAI, port security)",
-        "5.8 Compare Authentication, Authorization, and Accounting (AAA) concepts",
-        "5.9 Describe wireless security protocols (WPA, WPA2, WPA3)",
-        "5.10 Configure and verify WLAN within GUI using WPA2 PSK"
+    "5.0": {
+      title: "5.0 Security Fundamentals - Question Audit Form",
+      description: "Audit and verify pre-generated CCNA v1.1 questions covering Standard/Extended ACLs, Layer 2 Security (DAI/DHCP Snooping/Port Security), and AAA.",
+      questions: [
+        {
+          id: "q-5-7-001",
+          topic: "5.7 Layer 2 Security (Dynamic ARP Inspection)",
+          prompt: "Which Layer 2 security feature relies on the DHCP Snooping binding database to inspect ARP requests and replies, preventing ARP poisoning and MitM attacks?",
+          options: "A) Port Security\nB) Dynamic ARP Inspection (DAI) [CORRECT]\nC) BPDU Guard\nD) Storm Control",
+          explanation: "DAI intercepts ARP packets on untrusted ports and validates IP-to-MAC bindings against the DHCP Snooping database.",
+          reference": "CCNA 200-301 OCG Vol 2, Ch 7"
+        }
       ]
     },
-    {
-      id: "6.0",
-      title: "6.0 Automation and Programmability",
-      subtopics: [
-        "6.1 Explain how automation impacts network management",
-        "6.2 Compare traditional networks with controller-based networking (SDN)",
-        "6.3 Describe software-defined architecture (Overlay, underlay, fabric, North/South APIs)",
-        "6.4 Explain AI (generative and predictive) and machine learning in network operations",
-        "6.5 Describe characteristics of REST-based APIs (CRUD, HTTP verbs, JSON encoding)",
-        "6.6 Recognize capabilities of configuration management (Ansible and Terraform)",
-        "6.7 Recognize components of JSON-encoded data"
+    "6.0": {
+      title: "6.0 Automation and Programmability - Question Audit Form",
+      description: "Audit and verify pre-generated CCNA v1.1 questions covering AI/ML in NetOps, Terraform vs Ansible, REST APIs, and JSON encoding.",
+      questions: [
+        {
+          id: "q-6-4-001",
+          topic: "6.4 AI & Machine Learning in NetOps (CCNA v1.1)",
+          prompt: "Under the CCNA v1.1 blueprint, which network operations capability exemplifies predictive AI in enterprise controller platforms such as Cisco Catalyst Center?",
+          options: "A) Generating Jinja2 configuration templates\nB) Analyzing historical Wi-Fi telemetry and baselines to forecast anomalies and AP capacity saturation before users experience degraded service [CORRECT]\nC) Converting natural language user prompts into CLI commands\nD) Executing Python scripts to auto-commit Git merges",
+          explanation: "Predictive AI models analyze historical telemetry to establish baselines and forecast future degradation before user impact occurs.",
+          reference": "CCNA 200-301 v1.1 Topic 6.4"
+        },
+        {
+          id: "q-6-6-001",
+          topic: "6.6 Ansible vs Terraform (CCNA v1.1)",
+          prompt: "Which statement accurately contrasts Terraform with Ansible in modern network infrastructure automation?",
+          options: "A) Terraform is agent-based while Ansible requires no agent\nB) Terraform uses declarative HCL and state files (.tfstate) to manage lifecycle, whereas Ansible executes YAML playbooks over SSH [CORRECT]\nC) Ansible only manages cloud resources\nD) Terraform does not support idempotency",
+          explanation: "Terraform uses declarative HCL with state files (.tfstate). Ansible is agentless over SSH using YAML playbooks.",
+          reference": "CCNA 200-301 v1.1 Topic 6.6"
+        }
       ]
     }
-  ];
+  };
 
-  const results = [];
+  var results = [];
 
-  // 3. Programmatically build each form
-  domains.forEach(function(d) {
-    Logger.log("Creating Form for " + d.title + "...");
-    const form = FormApp.create("CCNA OpenSim: " + d.title);
-    
+  for (var domainId in sampleReviewData) {
+    var domain = sampleReviewData[domainId];
+    Logger.log("Creating Review Form for: " + domain.title);
+
+    var form = FormApp.create("CCNA OpenSim: " + domain.title);
     form.setDescription(
-      "Free & Open Source CCNA 200-301 v1.1 Question Bank.\n" +
-      "Use this form to rate, verify, or submit questions for " + d.title + ".\n" +
-      "Approved questions will be automatically synced into the live GitHub Pages practice exam."
+      domain.description + "\n\n" +
+      "INSTRUCTIONS FOR REVIEWERS:\n" +
+      "Below are draft questions created for the CCNA OpenSim question bank.\n" +
+      "Please evaluate each question for technical accuracy, exam closeness, and difficulty."
     );
 
-    // Question 1: Subtopic Cluster dropdown
-    const subtopicItem = form.addListItem();
-    subtopicItem.setTitle("Which topic cluster does this question belong to?")
-                .setRequired(true)
-                .setChoiceValues(d.subtopics);
+    // Add questions as review sections
+    domain.questions.forEach(function(q, index) {
+      form.addPageBreakItem()
+          .setTitle("Question " + (index + 1) + " of " + domain.questions.length + " [" + q.id + "]")
+          .setHelpText("Topic: " + q.topic);
 
-    // Question 2: Question Type
-    const typeItem = form.addMultipleChoiceItem();
-    typeItem.setTitle("Question Type")
-            .setRequired(true)
-            .setChoiceValues([
-              "Multiple Choice (Single Answer)",
-              "Multiple Choice (Choose Two / Three)",
-              "Drag and Drop (Matching)",
-              "Simlet (Scenario with Cisco IOS CLI)"
-            ]);
+      // Section Display: The Draft Question
+      var displayText = 
+        "SCENARIO / PROMPT:\n" + q.prompt + "\n\n" +
+        "OPTIONS:\n" + q.options + "\n\n" +
+        "EXPLANATION:\n" + q.explanation + "\n\n" +
+        "REFERENCE:\n" + q.reference;
 
-    // Question 3: Scenario / Prompt
-    const promptItem = form.addParagraphTextItem();
-    promptItem.setTitle("Question Scenario / Prompt")
-              .setHelpText("Write the scenario or problem description clearly.")
-              .setRequired(true);
+      var viewItem = form.addSectionHeaderItem();
+      viewItem.setTitle("Draft Question Details");
+      viewItem.setHelpText(displayText);
 
-    // Question 4: CLI Snippet (Optional)
-    const cliItem = form.addParagraphTextItem();
-    cliItem.setTitle("Cisco IOS CLI Snippet or Output (Optional)")
-           .setHelpText("Paste router/switch show command output or configuration snippets if applicable.");
+      // Review Question 1: Accuracy
+      form.addMultipleChoiceItem()
+          .setTitle("[" + q.id + "] Is this question and explanation technically accurate according to Cisco standards?")
+          .setChoiceValues(["Yes - Technically Accurate", "No - Contains Errors (explain below)"])
+          .setRequired(true);
 
-    // Options A, B, C, D, E
-    form.addTextItem().setTitle("Option A").setRequired(true);
-    form.addTextItem().setTitle("Option B").setRequired(true);
-    form.addTextItem().setTitle("Option C").setRequired(true);
-    form.addTextItem().setTitle("Option D").setRequired(true);
-    form.addTextItem().setTitle("Option E (Optional)");
+      // Review Question 2: Exam Closeness (Fidelity)
+      form.addScaleItem()
+          .setTitle("[" + q.id + "] Exam Closeness / Fidelity Rating:")
+          .setHelpText("1 = Unrealistic / Outdated, 5 = Exact Cisco CCNA 200-301 Style")
+          .setBounds(1, 5)
+          .setLabels("Outdated", "Exact CCNA")
+          .setRequired(true);
 
-    // Correct Option(s)
-    form.addTextItem()
-        .setTitle("Correct Option(s)")
-        .setHelpText("Enter the correct letter(s), e.g., 'B' or 'A, C'")
-        .setRequired(true);
+      // Review Question 3: Calibrated Difficulty
+      form.addScaleItem()
+          .setTitle("[" + q.id + "] Perceived Difficulty:")
+          .setBounds(1, 5)
+          .setLabels("1 - Easy", "5 - Very Hard")
+          .setRequired(true);
 
-    // In-depth Explanation
-    form.addParagraphTextItem()
-        .setTitle("Explanation & Rationale")
-        .setHelpText("Explain why the correct answer is right and why the distractors are wrong.")
-        .setRequired(true);
+      // Review Question 4: Suggested Corrections
+      form.addParagraphTextItem()
+          .setTitle("[" + q.id + "] Suggested Corrections, Wording Improvements, or Notes (Optional):")
+          .setHelpText("If you answered 'No' above or have ideas to improve this question, please detail them here.");
+    });
 
-    // Reference
-    form.addTextItem()
-        .setTitle("Cisco Reference / Source")
-        .setHelpText("e.g. Cisco Press CCNA 200-301 OCG Vol 1, RFC, or Whitepaper.");
-
-    // Rating: Exam Closeness
-    form.addScaleItem()
-        .setTitle("Exam Closeness (Fidelity)")
-        .setHelpText("How closely does this match the phrasing, style, and scope of the real CCNA 200-301?")
-        .setBounds(1, 5)
-        .setLabels("Outdated / Unrealistic", "Exact CCNA Style")
-        .setRequired(true);
-
-    // Rating: Difficulty
-    form.addScaleItem()
-        .setTitle("Calibrated Difficulty")
-        .setBounds(1, 5)
-        .setLabels("1 - Easy Recall", "5 - Complex Troubleshooting")
-        .setRequired(true);
-
-    // Contributor Credit
-    form.addTextItem()
-        .setTitle("Your Name or Discord / GitHub Handle (Optional)")
-        .setHelpText("For contributor recognition in the question bank.");
-
-    // Automatically link Form responses to the Master Spreadsheet!
+    // Link form responses directly to the Master Google Sheet
     form.setDestination(FormApp.DestinationType.SPREADSHEET, sheetId);
 
     results.push({
-      domainId: d.id,
-      title: d.title,
+      domainId: domainId,
+      title: domain.title,
       publishedUrl: form.getPublishedUrl(),
       editUrl: form.getEditUrl()
     });
-  });
+  }
 
   Logger.log("\n=======================================================");
-  Logger.log("🎉 ALL 6 FORMS AND MASTER SHEET CREATED SUCCESSFULLY!");
+  Logger.log("🎉 ALL 6 QUESTION AUDIT FORMS CREATED AND LINKED!");
   Logger.log("Master Sheet URL: " + sheetUrl);
   Logger.log("=======================================================\n");
 
   results.forEach(function(r) {
     Logger.log("Domain " + r.domainId + " (" + r.title + "):");
-    Logger.log("  Live Link: " + r.publishedUrl);
-    Logger.log("  Edit Link: " + r.editUrl + "\n");
+    Logger.log("  Review Link for Community: " + r.publishedUrl);
+    Logger.log("  Edit Link for Admin: " + r.editUrl + "\n");
   });
 }

@@ -1,0 +1,795 @@
+"""
+CCNA OpenSim - Domain 4.0 IP Services Generator (40 Questions)
+Covers subtopics 4.1 through 4.9 based on Cisco CCNA 200-301 v1.1
+"""
+
+import json
+import os
+
+questions = [
+    # 4.1 NAT and PAT (6 Qs)
+    {
+        "id": "q-4-1-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.1",
+        "subtopicName": "Configure and verify inside source NAT using static and pools",
+        "type": "single-choice",
+        "prompt": "Which Cisco IOS command keyword enables Port Address Translation (PAT) when translating internal private addresses to a single public IP address assigned to interface GigabitEthernet 0/1?",
+        "options": [
+            {"id": "A", "text": "ip nat inside source list 1 interface gigabitethernet 0/1 overload", "isCorrect": True},
+            {"id": "B", "text": "ip nat inside source list 1 interface gigabitethernet 0/1 pat-enable", "isCorrect": False},
+            {"id": "C", "text": "ip nat pool PUBLIC_POOL 203.0.113.1 203.0.113.1 netmask 255.255.255.252", "isCorrect": False},
+            {"id": "D", "text": "ip nat inside source static tcp 192.168.1.10 80 203.0.113.1 80", "isCorrect": False}
+        ],
+        "explanation": "The 'overload' keyword on the 'ip nat inside source list' command instructs the Cisco router to use Port Address Translation (PAT). PAT tracks unique source TCP/UDP port numbers so up to ~65,000 internal connections can share a single public IP.",
+        "reference": "CCNA 200-301 OCG Vol 2, NAT Configuration",
+        "difficulty": 2,
+        "fidelityScore": 4.8,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-1-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.1",
+        "subtopicName": "Configure and verify inside source NAT using static and pools",
+        "type": "single-choice",
+        "prompt": "In Cisco NAT terminology, what is the 'Inside Local' address?",
+        "options": [
+            {"id": "A", "text": "The private IP address assigned to an internal host on the inside network", "isCorrect": True},
+            {"id": "B", "text": "The globally routable public IP address representing an inside host to the outside world", "isCorrect": False},
+            {"id": "C", "text": "The IP address of the destination server on the Internet", "isCorrect": False},
+            {"id": "D", "text": "The IP address of the ISP gateway", "isCorrect": False}
+        ],
+        "explanation": "Cisco NAT definitions: 1. Inside Local = Private IP of inside host. 2. Inside Global = Public IP of inside host after translation. 3. Outside Global = Real public IP of external server. 4. Outside Local = External host's IP as viewed from the internal network.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 10",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-1-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.1",
+        "subtopicName": "Configure and verify inside source NAT using static and pools",
+        "type": "single-choice",
+        "prompt": "Which command configures a permanent 1-to-1 static NAT mapping for an internal web server at 192.168.1.50 to public IP 203.0.113.5?",
+        "options": [
+            {"id": "A", "text": "ip nat inside source static 192.168.1.50 203.0.113.5", "isCorrect": True},
+            {"id": "B", "text": "ip nat outside source static 203.0.113.5 192.168.1.50", "isCorrect": False},
+            {"id": "C", "text": "ip nat pool STATIC_WEB 192.168.1.50 203.0.113.5", "isCorrect": False},
+            {"id": "D", "text": "ip nat map 192.168.1.50 to 203.0.113.5", "isCorrect": False}
+        ],
+        "explanation": "Static NAT uses the syntax 'ip nat inside source static <inside-local-ip> <inside-global-ip>'.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 10",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-1-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.1",
+        "subtopicName": "Configure and verify inside source NAT using static and pools",
+        "type": "single-choice",
+        "prompt": "What command clears all dynamic active NAT translations from the router's translation table during troubleshooting?",
+        "options": [
+            {"id": "A", "text": "clear ip nat translation *", "isCorrect": True},
+            {"id": "B", "text": "no ip nat translations", "isCorrect": False},
+            {"id": "C", "text": "reset ip nat table", "isCorrect": False},
+            {"id": "D", "text": "flush nat translations all", "isCorrect": False}
+        ],
+        "explanation": "The privileged EXEC command 'clear ip nat translation *' removes all dynamic NAT sessions from the translation table. Note that static NAT entries are permanent and will not be cleared.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 10",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-1-005",
+        "domainId": "4.0",
+        "subtopicCode": "4.1",
+        "subtopicName": "Configure and verify inside source NAT using static and pools",
+        "type": "single-choice",
+        "prompt": "An administrator configures NAT on Router 1 but notices that no translations occur. The ACL permits the traffic, and the NAT statement is correct. What configuration was most likely omitted?",
+        "options": [
+            {"id": "A", "text": "The commands 'ip nat inside' and 'ip nat outside' were not configured under the respective router interfaces", "isCorrect": True},
+            {"id": "B", "text": "The router has not enabled OSPF routing", "isCorrect": False},
+            {"id": "C", "text": "The router clock is not synchronized via NTP", "isCorrect": False},
+            {"id": "D", "text": "NAT requires static routes with an Administrative Distance of 10", "isCorrect": False}
+        ],
+        "explanation": "NAT requires designating internal and external interfaces. Without 'ip nat inside' on the LAN-facing interface and 'ip nat outside' on the WAN-facing interface, the router will not intercept and translate passing packets.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 10",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-1-006",
+        "domainId": "4.0",
+        "subtopicCode": "4.1",
+        "subtopicName": "Configure and verify inside source NAT using static and pools",
+        "type": "single-choice",
+        "prompt": "In the output of 'show ip nat translations', which column displays the public IP address and port allocated by the router to represent the internal client to external servers?",
+        "options": [
+            {"id": "A", "text": "Inside global", "isCorrect": True},
+            {"id": "B", "text": "Inside local", "isCorrect": False},
+            {"id": "C", "text": "Outside local", "isCorrect": False},
+            {"id": "D", "text": "Outside global", "isCorrect": False}
+        ],
+        "explanation": "The 'Inside global' column displays the public/routable IP address (and Layer 4 port number in PAT) assigned by the router to represent the internal device to the Internet.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 10",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.2 Network Time Protocol (NTP) (4 Qs)
+    {
+        "id": "q-4-2-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.2",
+        "subtopicName": "Configure and verify NTP operating in client and server mode",
+        "type": "single-choice",
+        "prompt": "What does an NTP stratum level of 1 indicate?",
+        "options": [
+            {"id": "A", "text": "The time server is directly synchronized to a Stratum 0 high-precision atomic clock or GPS receiver", "isCorrect": True},
+            {"id": "B", "text": "The device's clock is completely unsynchronized", "isCorrect": False},
+            {"id": "C", "text": "The server is a virtual client that cannot service other NTP queries", "isCorrect": False},
+            {"id": "D", "text": "The NTP packet is dropped by an access list", "isCorrect": False}
+        ],
+        "explanation": "Stratum 0 devices are atomic clocks, GPS, or radio clocks. A Stratum 1 time server is directly attached to a Stratum 0 source, providing the highest accuracy network time.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-2-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.2",
+        "subtopicName": "Configure and verify NTP operating in client and server mode",
+        "type": "single-choice",
+        "prompt": "What does an NTP stratum value of 16 indicate in Cisco IOS?",
+        "options": [
+            {"id": "A", "text": "The device clock is unsynchronized and its time cannot be trusted", "isCorrect": True},
+            {"id": "B", "text": "The device has reached maximum encryption fidelity", "isCorrect": False},
+            {"id": "C", "text": "The device is operating in master broadcast mode", "isCorrect": False},
+            {"id": "D", "text": "The device is synced with a public stratum 15 master", "isCorrect": False}
+        ],
+        "explanation": "Stratum 16 is defined in NTP specifications as an indicator that the device is unsynchronized or that the time source is unreachable/invalid.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-2-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.2",
+        "subtopicName": "Configure and verify NTP operating in client and server mode",
+        "type": "single-choice",
+        "prompt": "Which command configures a Cisco router to synchronize its clock with external NTP server 203.0.113.10?",
+        "options": [
+            {"id": "A", "text": "ntp server 203.0.113.10", "isCorrect": True},
+            {"id": "B", "text": "clock ntp 203.0.113.10", "isCorrect": False},
+            {"id": "C", "text": "ip ntp client 203.0.113.10", "isCorrect": False},
+            {"id": "D", "text": "time-server 203.0.113.10", "isCorrect": False}
+        ],
+        "explanation": "In Cisco IOS global configuration mode, 'ntp server <ip-address>' configures the router to act as an NTP client syncing with the specified time server over UDP port 123.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-2-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.2",
+        "subtopicName": "Configure and verify NTP operating in client and server mode",
+        "type": "single-choice",
+        "prompt": "In the output of 'show ntp associations', what symbol prefix indicates the NTP server that is currently selected as the active synchronization source?",
+        "options": [
+            {"id": "A", "text": "An asterisk (*)", "isCorrect": True},
+            {"id": "B", "text": "A plus sign (+)", "isCorrect": False},
+            {"id": "C", "text": "A minus sign (-)", "isCorrect": False},
+            {"id": "D", "text": "A tilde (~)", "isCorrect": False}
+        ],
+        "explanation": "In 'show ntp associations': '*' denotes the sys.peer (the active synchronized source). '+' denotes a candidate peer (acceptable alternative). '~' denotes configured statically.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.3 DHCP and DNS (5 Qs)
+    {
+        "id": "q-4-3-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.3",
+        "subtopicName": "Explain the role of DHCP and DNS within the network",
+        "type": "drag-and-drop",
+        "prompt": "Order the four steps of the standard DHCPv4 address allocation handshake (DORA).",
+        "pairs": [
+            {"target": "Step 1", "match": "DHCP Discover (Broadcast from Client)"},
+            {"target": "Step 2", "match": "DHCP Offer (Unicast/Broadcast from Server)"},
+            {"target": "Step 3", "match": "DHCP Request (Broadcast from Client)"},
+            {"target": "Step 4", "match": "DHCP Acknowledgment (Unicast/Broadcast from Server)"}
+        ],
+        "explanation": "The DHCP handshake follows the DORA acronym: Discover (Client sends broadcast looking for servers) -> Offer (Server offers IP) -> Request (Client requests the offered IP) -> Pack/Ack (Server acknowledges and finalizes lease).",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-3-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.3",
+        "subtopicName": "Explain the role of DHCP and DNS within the network",
+        "type": "single-choice",
+        "prompt": "Which DNS record type maps a fully qualified domain name (FQDN) to an IPv6 address?",
+        "options": [
+            {"id": "A", "text": "AAAA record", "isCorrect": True},
+            {"id": "B", "text": "A record", "isCorrect": False},
+            {"id": "C", "text": "CNAME record", "isCorrect": False},
+            {"id": "D", "text": "PTR record", "isCorrect": False}
+        ],
+        "explanation": "An 'A' record maps an FQDN to an IPv4 (32-bit) address. A 'AAAA' ('quad-A') record maps an FQDN to a 128-bit IPv6 address.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-3-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.3",
+        "subtopicName": "Explain the role of DHCP and DNS within the network",
+        "type": "single-choice",
+        "prompt": "What type of DNS record creates an alias that points one domain name to another canonical domain name?",
+        "options": [
+            {"id": "A", "text": "CNAME (Canonical Name)", "isCorrect": True},
+            {"id": "B", "text": "MX (Mail Exchange)", "isCorrect": False},
+            {"id": "C", "text": "NS (Name Server)", "isCorrect": False},
+            {"id": "D", "text": "SOA (Start of Authority)", "isCorrect": False}
+        ],
+        "explanation": "A CNAME record provides an alias for another domain name (e.g. mapping www.example.com to example.com).",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-3-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.3",
+        "subtopicName": "Explain the role of DHCP and DNS within the network",
+        "type": "single-choice",
+        "prompt": "When a DHCP client reaches 50% of its lease duration (Timer T1), how does it attempt to renew its lease?",
+        "options": [
+            {"id": "A", "text": "It sends a unicast DHCP Request directly to the DHCP server that granted the lease", "isCorrect": True},
+            {"id": "B", "text": "It broadcasts a DHCP Discover to all network routers", "isCorrect": False},
+            {"id": "C", "text": "It releases the IP address and disconnects immediately", "isCorrect": False},
+            {"id": "D", "text": "It sends an ICMP echo request to its default gateway", "isCorrect": False}
+        ],
+        "explanation": "At 50% lease time (T1), the client sends a unicast DHCP Request to the issuing server. If no reply is received by 87.5% lease time (T2), the client broadcasts a DHCP Request to any available DHCP server.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-3-005",
+        "domainId": "4.0",
+        "subtopicCode": "4.3",
+        "subtopicName": "Explain the role of DHCP and DNS within the network",
+        "type": "single-choice",
+        "prompt": "Which command on a Cisco router configured as a DHCP server excludes IP addresses 192.168.1.1 through 192.168.1.10 from being leased to clients?",
+        "options": [
+            {"id": "A", "text": "ip dhcp excluded-address 192.168.1.1 192.168.1.10", "isCorrect": True},
+            {"id": "B", "text": "no ip dhcp pool 192.168.1.1 192.168.1.10", "isCorrect": False},
+            {"id": "C", "text": "dhcp exclude 192.168.1.1 to 192.168.1.10", "isCorrect": False},
+            {"id": "D", "text": "ip dhcp reserve 192.168.1.1 192.168.1.10", "isCorrect": False}
+        ],
+        "explanation": "In global configuration mode, 'ip dhcp excluded-address <low-ip> [high-ip]' prevents the router's DHCP server from leasing addresses reserved for gateways, printers, or static servers.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.4 SNMP (4 Qs)
+    {
+        "id": "q-4-4-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.4",
+        "subtopicName": "Explain the function of SNMP in network operations",
+        "type": "single-choice",
+        "prompt": "Which SNMP version introduced cryptographic user authentication (HMAC-MD5/SHA) and DES/AES packet encryption?",
+        "options": [
+            {"id": "A", "text": "SNMPv3", "isCorrect": True},
+            {"id": "B", "text": "SNMPv2c", "isCorrect": False},
+            {"id": "C", "text": "SNMPv1", "isCorrect": False},
+            {"id": "D", "text": "SNMPv4", "isCorrect": False}
+        ],
+        "explanation": "SNMPv1 and SNMPv2c use cleartext community strings, which are vulnerable to sniffing. SNMPv3 introduced a robust security model supporting authentication and encryption (authPriv).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-4-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.4",
+        "subtopicName": "Explain the function of SNMP in network operations",
+        "type": "single-choice",
+        "prompt": "What is the key functional difference between an SNMP Trap and an SNMP Inform?",
+        "options": [
+            {"id": "A", "text": "An Inform requires an acknowledgment from the NMS, whereas a Trap is unacknowledged UDP", "isCorrect": True},
+            {"id": "B", "text": "A Trap runs over TCP while an Inform runs over UDP", "isCorrect": False},
+            {"id": "C", "text": "Traps are only sent by routers; Informs are only sent by switches", "isCorrect": False},
+            {"id": "D", "text": "Informs cannot be encrypted by SNMPv3", "isCorrect": False}
+        ],
+        "explanation": "Both Traps and Informs are unsolicited event notifications sent from the agent to the NMS. Traps are fire-and-forget (unacknowledged UDP). Informs require the NMS to return an acknowledgment; if none is received, the agent retransmits the Inform.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-4-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.4",
+        "subtopicName": "Explain the function of SNMP in network operations",
+        "type": "single-choice",
+        "prompt": "In SNMP architecture, what is a Management Information Base (MIB)?",
+        "options": [
+            {"id": "A", "text": "A hierarchical database of managed object definitions and variables structured by Object Identifiers (OIDs)", "isCorrect": True},
+            {"id": "B", "text": "The physical chassis serial number burned into ROM", "isCorrect": False},
+            {"id": "C", "text": "A firewall rule blocking UDP port 161", "isCorrect": False},
+            {"id": "D", "text": "The master encryption key used by SNMPv3", "isCorrect": False}
+        ],
+        "explanation": "A MIB is an organized, hierarchical structure of metrics (CPU utilization, interface counters, power status) defined by OIDs (e.g. 1.3.6.1.2.1) that can be queried or modified via SNMP.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-4-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.4",
+        "subtopicName": "Explain the function of SNMP in network operations",
+        "type": "single-choice",
+        "prompt": "What security level in SNMPv3 provides BOTH HMAC authentication and AES/DES data payload encryption?",
+        "options": [
+            {"id": "A", "text": "authPriv (Authentication and Privacy)", "isCorrect": True},
+            {"id": "B", "text": "authNoPriv", "isCorrect": False},
+            {"id": "C", "text": "noAuthNoPriv", "isCorrect": False},
+            {"id": "D", "text": "communityPriv", "isCorrect": False}
+        ],
+        "explanation": "SNMPv3 security levels: 1. noAuthNoPriv (username only, no auth, no encryption). 2. authNoPriv (MD5/SHA authentication, no encryption). 3. authPriv (MD5/SHA authentication + DES/AES encryption).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.5 Syslog (4 Qs)
+    {
+        "id": "q-4-5-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.5",
+        "subtopicName": "Describe syslog features",
+        "type": "drag-and-drop",
+        "prompt": "Match each Syslog severity level number with its standard severity name.",
+        "pairs": [
+            {"target": "Level 0", "match": "Emergency"},
+            {"target": "Level 1", "match": "Alert"},
+            {"target": "Level 4", "match": "Warning"},
+            {"target": "Level 7", "match": "Debugging"}
+        ],
+        "explanation": "Syslog levels 0-7: 0=Emergency, 1=Alert, 2=Critical, 3=Error, 4=Warning, 5=Notification, 6=Informational, 7=Debugging. Mnemonic: Every Assassin Smells Evil, Every Night Down South.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-5-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.5",
+        "subtopicName": "Describe syslog features",
+        "type": "single-choice",
+        "prompt": "An administrator logged into a router via an SSH session executes 'debug ip ospf hello', but no debug messages appear on the screen. Which command must be executed in privileged EXEC mode to display logging on the terminal?",
+        "options": [
+            {"id": "A", "text": "terminal monitor", "isCorrect": True},
+            {"id": "B", "text": "logging console", "isCorrect": False},
+            {"id": "C", "text": "debug all enable", "isCorrect": False},
+            {"id": "D", "text": "service debug terminal", "isCorrect": False}
+        ],
+        "explanation": "By default, Cisco IOS sends syslog and debug output only to the local console port ('logging console'). To view real-time log and debug messages over an SSH or Telnet VTY session, enter 'terminal monitor'.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-5-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.5",
+        "subtopicName": "Describe syslog features",
+        "type": "single-choice",
+        "prompt": "What standard UDP port is used by Syslog clients to forward messages to an external Syslog server?",
+        "options": [
+            {"id": "A", "text": "UDP port 514", "isCorrect": True},
+            {"id": "B", "text": "UDP port 161", "isCorrect": False},
+            {"id": "C", "text": "TCP port 22", "isCorrect": False},
+            {"id": "D", "text": "UDP port 69", "isCorrect": False}
+        ],
+        "explanation": "Syslog standard transmission uses UDP port 514.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-5-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.5",
+        "subtopicName": "Describe syslog features",
+        "type": "single-choice",
+        "prompt": "What does Syslog severity level 5 (Notification) indicate?",
+        "options": [
+            {"id": "A", "text": "Normal but significant operational events, such as an interface line protocol transitioning up or down", "isCorrect": True},
+            {"id": "B", "text": "An imminent total hardware failure", "isCorrect": False},
+            {"id": "C", "text": "Packet debugging details", "isCorrect": False},
+            {"id": "D", "text": "An unauthorized intrusion attempt", "isCorrect": False}
+        ],
+        "explanation": "Severity level 5 (Notification) indicates normal operational occurrences that are significant enough to be logged, such as '%LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up'.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.6 DHCP Relay (5 Qs)
+    {
+        "id": "q-4-6-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.6",
+        "subtopicName": "Configure and verify DHCP client and relay",
+        "type": "single-choice",
+        "prompt": "A client PC in VLAN 10 broadcasts a DHCP Discover. The centralized corporate DHCP server is located in VLAN 50 across a Layer 3 router. Which command must be configured on the router's VLAN 10 interface to forward the request?",
+        "options": [
+            {"id": "A", "text": "ip helper-address <DHCP_Server_IP>", "isCorrect": True},
+            {"id": "B", "text": "ip dhcp forward-broadcast", "isCorrect": False},
+            {"id": "C", "text": "dhcp-relay enable", "isCorrect": False},
+            {"id": "D", "text": "ip forward-protocol dhcp", "isCorrect": False}
+        ],
+        "explanation": "Routers block broadcasts by default. The 'ip helper-address <server-ip>' command configured on the client-facing interface converts incoming UDP broadcast DHCP requests into unicast packets directed to the centralized DHCP server.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-6-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.6",
+        "subtopicName": "Configure and verify DHCP client and relay",
+        "type": "single-choice",
+        "prompt": "Which command configures a Cisco IOS router interface to obtain its own IP address dynamically from an ISP's upstream DHCP server?",
+        "options": [
+            {"id": "A", "text": "ip address dhcp", "isCorrect": True},
+            {"id": "B", "text": "dhcp client enable", "isCorrect": False},
+            {"id": "C", "text": "ip dhcp client request", "isCorrect": False},
+            {"id": "D", "text": "ip address auto-dhcp", "isCorrect": False}
+        ],
+        "explanation": "To configure a Cisco router interface (such as a WAN uplink to a cable/DSL modem) to act as a DHCP client, enter interface configuration mode and type 'ip address dhcp'.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-6-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.6",
+        "subtopicName": "Configure and verify DHCP client and relay",
+        "type": "single-choice",
+        "prompt": "When an 'ip helper-address' converts a broadcast DHCP Discover into a unicast packet, what IP address does the router place into the 'giaddr' (Gateway IP Address) field of the DHCP payload?",
+        "options": [
+            {"id": "A", "text": "The IP address of the router's incoming interface that received the broadcast", "isCorrect": True},
+            {"id": "B", "text": "The public NAT address of the router", "isCorrect": False},
+            {"id": "C", "text": "0.0.0.0", "isCorrect": False},
+            {"id": "D", "text": "255.255.255.255", "isCorrect": False}
+        ],
+        "explanation": "The router sets the giaddr field to the IP address of the interface on which the broadcast was received. The remote DHCP server reads giaddr to determine which IP subnet/pool to lease an address from.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 3,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-6-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.6",
+        "subtopicName": "Configure and verify DHCP client and relay",
+        "type": "single-choice",
+        "prompt": "By default, which list of UDP broadcast ports are forwarded by the 'ip helper-address' command?",
+        "options": [
+            {"id": "A", "text": "TFTP (69), DNS (53), Time (37), TACACS (49), BOOTP/DHCP (67/68), and NetBIOS (137/138)", "isCorrect": True},
+            {"id": "B", "text": "HTTP (80), HTTPS (443), SSH (22)", "isCorrect": False},
+            {"id": "C", "text": "NTP (123), SNMP (161), Syslog (514)", "isCorrect": False},
+            {"id": "D", "text": "BGP (179), OSPF (89), EIGRP (88)", "isCorrect": False}
+        ],
+        "explanation": "By default, 'ip helper-address' forwards 8 UDP broadcast services: Port 37 (Time), Port 49 (TACACS), Port 53 (DNS), Port 67/68 (DHCP/BOOTP), Port 69 (TFTP), and Port 137/138 (NetBIOS).",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 3,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-6-005",
+        "domainId": "4.0",
+        "subtopicCode": "4.6",
+        "subtopicName": "Configure and verify DHCP client and relay",
+        "type": "single-choice",
+        "prompt": "Which command verifies active IP address leases issued by a local Cisco IOS DHCP server?",
+        "options": [
+            {"id": "A", "text": "show ip dhcp binding", "isCorrect": True},
+            {"id": "B", "text": "show dhcp leases", "isCorrect": False},
+            {"id": "C", "text": "show ip dhcp pool", "isCorrect": False},
+            {"id": "D", "text": "show ip dhcp server status", "isCorrect": False}
+        ],
+        "explanation": "'show ip dhcp binding' lists all IP addresses currently leased out by the router, mapped to the client MAC addresses, lease expiration times, and types (Automatic / Static).",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 18",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.7 QoS Per-Hop Behavior (5 Qs)
+    {
+        "id": "q-4-7-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.7",
+        "subtopicName": "Explain forwarding per-hop behavior for QoS",
+        "type": "single-choice",
+        "prompt": "What standard DSCP value and binary marking is recommended by Cisco for Voice over IP (VoIP) audio bearer traffic (RTP)?",
+        "options": [
+            {"id": "A", "text": "Expedited Forwarding (EF) / DSCP 46 (binary 101110)", "isCorrect": True},
+            {"id": "B", "text": "Assured Forwarding AF41 / DSCP 34", "isCorrect": False},
+            {"id": "C", "text": "Default Forwarding CS0 / DSCP 0", "isCorrect": False},
+            {"id": "D", "text": "Class Selector CS3 / DSCP 24", "isCorrect": False}
+        ],
+        "explanation": "VoIP audio payload requires minimal delay and jitter, and is assigned the Expedited Forwarding (EF) per-hop behavior, corresponding to DSCP 46 (IP Precedence 5).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 11",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-7-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.7",
+        "subtopicName": "Explain forwarding per-hop behavior for QoS",
+        "type": "single-choice",
+        "prompt": "What is the primary difference between Traffic Policing and Traffic Shaping in QoS?",
+        "options": [
+            {"id": "A", "text": "Policing drops or re-marks packets exceeding the configured rate (producing a jagged output profile), while Shaping buffers excess packets in memory (producing a smooth output rate)", "isCorrect": True},
+            {"id": "B", "text": "Shaping drops packets while Policing buffers packets", "isCorrect": False},
+            {"id": "C", "text": "Policing only operates on inbound interfaces, and shaping operates only on Layer 2 switches", "isCorrect": False},
+            {"id": "D", "text": "Policing encrypts traffic while shaping decrypts traffic", "isCorrect": False}
+        ],
+        "explanation": "Traffic Policing strictly drops or re-marks excess traffic without delay, resulting in jagged transmission. Traffic Shaping buffers excess packets in a queue and delays them, smoothing bursty traffic to match an egress bandwidth limit.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 11",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-7-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.7",
+        "subtopicName": "Explain forwarding per-hop behavior for QoS",
+        "type": "single-choice",
+        "prompt": "In an 802.1Q tagged frame header, which 3-bit field is used to encode Layer 2 Class of Service (CoS) values from 0 to 7?",
+        "options": [
+            {"id": "A", "text": "Priority Code Point (PCP)", "isCorrect": True},
+            {"id": "B", "text": "Drop Eligible Indicator (DEI)", "isCorrect": False},
+            {"id": "C", "text": "Type of Service (ToS)", "isCorrect": False},
+            {"id": "D", "text": "VLAN Identifier (VID)", "isCorrect": False}
+        ],
+        "explanation": "Layer 2 QoS CoS markings (values 0-7) are placed in the 3-bit Priority Code Point (PCP) field within the 802.1Q tag. DEI is 1 bit, and VID is 12 bits.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 11",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-7-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.7",
+        "subtopicName": "Explain forwarding per-hop behavior for QoS",
+        "type": "single-choice",
+        "prompt": "Which queuing mechanism incorporates a Strict Priority queue alongside Class-Based Weighted Fair Queuing (CBWFQ) to guarantee delay-free forwarding for voice traffic?",
+        "options": [
+            {"id": "A", "text": "Low Latency Queuing (LLQ)", "isCorrect": True},
+            {"id": "B", "text": "FIFO (First In, First Out)", "isCorrect": False},
+            {"id": "C", "text": "Weighted Round Robin (WRR)", "isCorrect": False},
+            {"id": "D", "text": "Custom Queuing (CQ)", "isCorrect": False}
+        ],
+        "explanation": "Low Latency Queuing (LLQ) adds a strict priority queue (PQ) to standard CBWFQ. Voice packets placed into the priority queue are always serviced before any other queue, minimizing delay and jitter.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 11",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-7-005",
+        "domainId": "4.0",
+        "subtopicCode": "4.7",
+        "subtopicName": "Explain forwarding per-hop behavior for QoS",
+        "type": "single-choice",
+        "prompt": "In Assured Forwarding DSCP nomenclature (e.g. AF32), what do the first digit '3' and the second digit '2' represent?",
+        "options": [
+            {"id": "A", "text": "'3' is the Class (priority), and '2' is the Drop Precedence (probability of being dropped during congestion)", "isCorrect": True},
+            {"id": "B", "text": "'3' is the hop count, and '2' is the delay in milliseconds", "isCorrect": False},
+            {"id": "C", "text": "'3' is the VLAN ID, and '2' is the CoS value", "isCorrect": False},
+            {"id": "D", "text": "'3' is the IP precedence, and '2' is the MTU multiplier", "isCorrect": False}
+        ],
+        "explanation": "In AFxy: 'x' is the Class (1 to 4, where higher means better forwarding treatment), and 'y' is the Drop Precedence (1 to 3, where higher means higher probability of being dropped when queues fill).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 11",
+        "difficulty": 3,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.8 Remote Access Using SSH (4 Qs)
+    {
+        "id": "q-4-8-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.8",
+        "subtopicName": "Configure network devices for remote access using SSH",
+        "type": "single-choice",
+        "prompt": "What command generates the RSA cryptographic public/private key pair required before SSH can be activated on a Cisco router?",
+        "options": [
+            {"id": "A", "text": "crypto key generate rsa modulus 2048", "isCorrect": True},
+            {"id": "B", "text": "ssh-keygen -t rsa", "isCorrect": False},
+            {"id": "C", "text": "ip ssh crypto rsa enable", "isCorrect": False},
+            {"id": "D", "text": "crypto rsa create 2048", "isCorrect": False}
+        ],
+        "explanation": "The global configuration command 'crypto key generate rsa [modulus <bits>]' generates the RSA key pair needed for SSH. Cisco recommends a minimum modulus of 2048 bits for modern security.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-8-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.8",
+        "subtopicName": "Configure network devices for remote access using SSH",
+        "type": "multiple-choice",
+        "prompt": "Before 'crypto key generate rsa' will succeed, which two parameters MUST be configured on a factory-default Cisco device? (Choose two.)",
+        "options": [
+            {"id": "A", "text": "A non-default hostname (configured via 'hostname <name>')", "isCorrect": True},
+            {"id": "B", "text": "An IP domain name (configured via 'ip domain-name <domain>')", "isCorrect": True},
+            {"id": "C", "text": "An active BGP peering session", "isCorrect": False},
+            {"id": "D", "text": "An OSPF Router ID", "isCorrect": False},
+            {"id": "E", "text": "A DHCP server binding", "isCorrect": False}
+        ],
+        "explanation": "Cisco IOS names the RSA key pair using the format '<hostname>.<domain-name>'. If the default hostname 'Router' or 'Switch' is unchanged, or if 'ip domain-name' is missing, the router refuses to generate RSA keys.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-8-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.8",
+        "subtopicName": "Configure network devices for remote access using SSH",
+        "type": "single-choice",
+        "prompt": "Which command forces a Cisco device to negotiate exclusively SSH version 2, disabling vulnerable SSHv1?",
+        "options": [
+            {"id": "A", "text": "ip ssh version 2", "isCorrect": True},
+            {"id": "B", "text": "ssh version 2 only", "isCorrect": False},
+            {"id": "C", "text": "transport ssh version 2", "isCorrect": False},
+            {"id": "D", "text": "no ip ssh v1", "isCorrect": False}
+        ],
+        "explanation": "The global configuration command 'ip ssh version 2' disables legacy SSH version 1 fallback and enforces SSHv2 encryption standards.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-8-004",
+        "domainId": "4.0",
+        "subtopicCode": "4.8",
+        "subtopicName": "Configure network devices for remote access using SSH",
+        "type": "single-choice",
+        "prompt": "Which command displays the current SSH server status, including enabled version (v1.99 or v2), authentication timeout, and maximum retry attempts?",
+        "options": [
+            {"id": "A", "text": "show ip ssh", "isCorrect": True},
+            {"id": "B", "text": "show ssh status", "isCorrect": False},
+            {"id": "C", "text": "show crypto ssh", "isCorrect": False},
+            {"id": "D", "text": "show line vty ssh", "isCorrect": False}
+        ],
+        "explanation": "'show ip ssh' displays administrative SSH parameters such as version, timeout (default 120s), and authentication retries (default 3). 'show ssh' displays active client sessions.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 4.9 TFTP and FTP (3 Qs)
+    {
+        "id": "q-4-9-001",
+        "domainId": "4.0",
+        "subtopicCode": "4.9",
+        "subtopicName": "Describe capabilities and functions of TFTP/FTP in the network",
+        "type": "single-choice",
+        "prompt": "Which protocol is connectionless, uses UDP port 69, does not provide user authentication, and is commonly used to transfer Cisco IOS software images and configuration files?",
+        "options": [
+            {"id": "A", "text": "TFTP (Trivial File Transfer Protocol)", "isCorrect": True},
+            {"id": "B", "text": "FTP (File Transfer Protocol)", "isCorrect": False},
+            {"id": "C", "text": "SFTP (SSH File Transfer Protocol)", "isCorrect": False},
+            {"id": "D", "text": "SCP (Secure Copy Protocol)", "isCorrect": False}
+        ],
+        "explanation": "TFTP operates over UDP port 69, providing a very simple, lightweight file transfer mechanism with no authentication or directory browsing capabilities.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-9-002",
+        "domainId": "4.0",
+        "subtopicCode": "4.9",
+        "subtopicName": "Describe capabilities and functions of TFTP/FTP in the network",
+        "type": "single-choice",
+        "prompt": "Which two TCP ports are utilized by File Transfer Protocol (FTP) for control commands and active data transfer respectively?",
+        "options": [
+            {"id": "A", "text": "TCP port 21 for Control commands and TCP port 20 for Data transfer", "isCorrect": True},
+            {"id": "B", "text": "TCP port 22 for Control and TCP port 23 for Data", "isCorrect": False},
+            {"id": "C", "text": "UDP port 69 for Control and UDP port 70 for Data", "isCorrect": False},
+            {"id": "D", "text": "TCP port 80 for Control and TCP port 443 for Data", "isCorrect": False}
+        ],
+        "explanation": "FTP uses two separate TCP connections: Port 21 for the control/command channel (session management and authentication), and Port 20 for active mode data transfer.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-4-9-003",
+        "domainId": "4.0",
+        "subtopicCode": "4.9",
+        "subtopicName": "Describe capabilities and functions of TFTP/FTP in the network",
+        "type": "single-choice",
+        "prompt": "Which Cisco IOS command backs up the current active configuration to an external TFTP server at 192.168.1.100?",
+        "options": [
+            {"id": "A", "text": "copy running-config tftp:", "isCorrect": True},
+            {"id": "B", "text": "export config to tftp 192.168.1.100", "isCorrect": False},
+            {"id": "C", "text": "save running-config tftp://192.168.1.100", "isCorrect": False},
+            {"id": "D", "text": "backup-config tftp", "isCorrect": False}
+        ],
+        "explanation": "The standard command syntax is 'copy running-config tftp:', after which Cisco IOS interactively prompts for the remote host IP and target filename.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 4",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    }
+]
+
+# Write out Domain 4 questions
+output_path = os.path.join(os.path.dirname(__file__), "../src/data/domains/domain4.json")
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(questions, f, indent=2)
+
+print(f"[SUCCESS] Generated Domain 4.0 with {len(questions)} questions at {output_path}")

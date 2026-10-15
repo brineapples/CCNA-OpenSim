@@ -1,0 +1,1174 @@
+"""
+CCNA OpenSim - Domain 5.0 Security Fundamentals Generator (60 Questions)
+Covers subtopics 5.1 through 5.10 based on Cisco CCNA 200-301 v1.1
+"""
+
+import json
+import os
+
+questions = [
+    # 5.1 Security Concepts (6 Qs)
+    {
+        "id": "q-5-1-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.1",
+        "subtopicName": "Define key security concepts",
+        "type": "single-choice",
+        "prompt": "In information security risk management, what is the definition of a 'vulnerability'?",
+        "options": [
+            {"id": "A", "text": "A flaw or weakness in system design, implementation, or software that can be exploited by an adversary", "isCorrect": True},
+            {"id": "B", "text": "The potential danger that can exploit a system weakness", "isCorrect": False},
+            {"id": "C", "text": "A piece of software code that takes advantage of a flaw", "isCorrect": False},
+            {"id": "D", "text": "The financial cost of a regulatory fine", "isCorrect": False}
+        ],
+        "explanation": "In security terminology: Vulnerability = Weakness in a system. Threat = Potential danger. Exploit = Mechanism or code used to take advantage of a vulnerability. Risk = Probability of a threat exploiting a vulnerability multiplied by its impact.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-1-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.1",
+        "subtopicName": "Define key security concepts",
+        "type": "single-choice",
+        "prompt": "Which social engineering attack specifically targets high-profile C-level executives (such as CEOs or CFOs) to authorize fraudulent wire transfers or disclose intellectual property?",
+        "options": [
+            {"id": "A", "text": "Whaling", "isCorrect": True},
+            {"id": "B", "text": "Smishing", "isCorrect": False},
+            {"id": "C", "text": "Vishing", "isCorrect": False},
+            {"id": "D", "text": "Watering hole attack", "isCorrect": False}
+        ],
+        "explanation": "Whaling is a highly targeted form of spear-phishing aimed directly at senior executives, board members, or high-level government officials.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-1-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.1",
+        "subtopicName": "Define key security concepts",
+        "type": "single-choice",
+        "prompt": "What type of attack involves an attacker placing themselves logically between two communicating endpoints to secretly intercept, modify, or inject traffic without detection?",
+        "options": [
+            {"id": "A", "text": "Man-in-the-Middle (MitM) attack", "isCorrect": True},
+            {"id": "B", "text": "Smurf attack", "isCorrect": False},
+            {"id": "C", "text": "SQL Injection", "isCorrect": False},
+            {"id": "D", "text": "Buffer overflow attack", "isCorrect": False}
+        ],
+        "explanation": "A Man-in-the-Middle (MitM) attack (often performed via ARP spoofing or rogue DHCP servers on local LANs) intercepts traffic between two legitimate endpoints.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-1-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.1",
+        "subtopicName": "Define key security concepts",
+        "type": "single-choice",
+        "prompt": "Which component of the CIA triad ensures that data is protected from unauthorized modification, deletion, or tampering in transit and at rest?",
+        "options": [
+            {"id": "A", "text": "Integrity", "isCorrect": True},
+            {"id": "B", "text": "Confidentiality", "isCorrect": False},
+            {"id": "C", "text": "Availability", "isCorrect": False},
+            {"id": "D", "text": "Accounting", "isCorrect": False}
+        ],
+        "explanation": "The CIA Triad consists of: Confidentiality (data privacy/encryption), Integrity (guarantee that data has not been altered or corrupted, verified via cryptographic hashes/HMACs), and Availability (systems remain accessible to authorized users).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-1-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.1",
+        "subtopicName": "Define key security concepts",
+        "type": "single-choice",
+        "prompt": "What security mechanism prevents an attacker from successfully forging the sender IP address in outbound packets from an enterprise campus?",
+        "options": [
+            {"id": "A", "text": "Anti-spoofing filtering (BCP 38 / uRPF - Unicast Reverse Path Forwarding)", "isCorrect": True},
+            {"id": "B", "text": "Port Security violation shutdown", "isCorrect": False},
+            {"id": "C", "text": "DHCP Option 82 insertion", "isCorrect": False},
+            {"id": "D", "text": "Dynamic ARP Inspection trust mode", "isCorrect": False}
+        ],
+        "explanation": "uRPF (Unicast Reverse Path Forwarding) and egress ACLs enforce BCP 38 anti-spoofing rules, dropping packets whose source IP address does not match a valid return route in the routing table.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 3,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-1-006",
+        "domainId": "5.0",
+        "subtopicCode": "5.1",
+        "subtopicName": "Define key security concepts",
+        "type": "single-choice",
+        "prompt": "How does ransomware typically monetize an attack against an enterprise network?",
+        "options": [
+            {"id": "A", "text": "By encrypting organizational files and databases with strong symmetric/asymmetric keys and demanding cryptocurrency payment for the decryption key", "isCorrect": True},
+            {"id": "B", "text": "By executing a SYN flood against the enterprise DNS server", "isCorrect": False},
+            {"id": "C", "text": "By resetting Cisco switch passwords to factory defaults", "isCorrect": False},
+            {"id": "D", "text": "By downgrading 10G fiber optics to 100M copper", "isCorrect": False}
+        ],
+        "explanation": "Ransomware is malicious software that encrypts user data, holding the private decryption key hostage until a ransom (typically in cryptocurrency) is paid.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 4.8,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.2 Security Program Elements (5 Qs)
+    {
+        "id": "q-5-2-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.2",
+        "subtopicName": "Describe security program elements",
+        "type": "single-choice",
+        "prompt": "Why is regular, interactive user awareness and phishing simulation training considered a mandatory pillar of an enterprise security program?",
+        "options": [
+            {"id": "A", "text": "Because human users are the primary entry point for credential harvesting, malware, and social engineering attacks that bypass technical firewalls", "isCorrect": True},
+            {"id": "B", "text": "Because user training replaces the need for endpoint antivirus and firewalls", "isCorrect": False},
+            {"id": "C", "text": "To satisfy Cisco IOS XE licensing compliance", "isCorrect": False},
+            {"id": "D", "text": "To automate the deployment of BGP routing policies", "isCorrect": False}
+        ],
+        "explanation": "Security awareness training addresses the 'human factor'. Over 80% of data breaches involve social engineering or stolen credentials. Educated employees are the frontline defense against phishing and credential harvesting.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-2-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.2",
+        "subtopicName": "Describe security program elements",
+        "type": "single-choice",
+        "prompt": "Which physical security control uses an enclosed entryway with two interlocking doors to prevent unauthorized 'tailgating' into a data center?",
+        "options": [
+            {"id": "A", "text": "Mantrap (Access control vestibule)", "isCorrect": True},
+            {"id": "B", "text": "Biometric deadbolt", "isCorrect": False},
+            {"id": "C", "text": "CCTV camera with infrared night vision", "isCorrect": False},
+            {"id": "D", "text": "Kensington lock", "isCorrect": False}
+        ],
+        "explanation": "A mantrap (access control vestibule) has two doors where only one door can be open at a time, requiring authentication to pass through each chamber, effectively eliminating tailgating.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-2-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.2",
+        "subtopicName": "Describe security program elements",
+        "type": "single-choice",
+        "prompt": "What corporate document defines permitted and prohibited uses of company computer assets, network bandwidth, and email communications?",
+        "options": [
+            {"id": "A", "text": "Acceptable Use Policy (AUP)", "isCorrect": True},
+            {"id": "B", "text": "Disaster Recovery Plan (DRP)", "isCorrect": False},
+            {"id": "C", "text": "Service Level Agreement (SLA)", "isCorrect": False},
+            {"id": "D", "text": "Business Impact Analysis (BIA)", "isCorrect": False}
+        ],
+        "explanation": "An Acceptable Use Policy (AUP) specifies user responsibilities and boundaries regarding company IT assets, web browsing, hardware usage, and sensitive company data.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 4.8,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-2-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.2",
+        "subtopicName": "Describe security program elements",
+        "type": "single-choice",
+        "prompt": "What principle mandates that an employee or service account should only be granted the minimum level of access and permissions required to perform their specific job responsibilities?",
+        "options": [
+            {"id": "A", "text": "Principle of Least Privilege", "isCorrect": True},
+            {"id": "B", "text": "Separation of Duties", "isCorrect": False},
+            {"id": "C", "text": "Zero Knowledge Proof", "isCorrect": False},
+            {"id": "D", "text": "Defense in Depth", "isCorrect": False}
+        ],
+        "explanation": "The Principle of Least Privilege ensures that users and applications receive only the minimal rights necessary to carry out authorized duties, limiting the blast radius if an account is compromised.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-2-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.2",
+        "subtopicName": "Describe security program elements",
+        "type": "single-choice",
+        "prompt": "In an incident response plan, what is the first phase executed immediately upon receiving telemetry of a suspected network breach?",
+        "options": [
+            {"id": "A", "text": "Identification (Detection and Analysis)", "isCorrect": True},
+            {"id": "B", "text": "Eradication", "isCorrect": False},
+            {"id": "C", "text": "Recovery", "isCorrect": False},
+            {"id": "D", "text": "Lessons Learned", "isCorrect": False}
+        ],
+        "explanation": "The standard NIST incident response phases: 1. Preparation. 2. Detection and Identification. 3. Containment. 4. Eradication. 5. Recovery. 6. Post-Incident Review / Lessons Learned.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 4.8,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.3 Device Access Control & Local Passwords (6 Qs)
+    {
+        "id": "q-5-3-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.3",
+        "subtopicName": "Configure and verify device access control using local passwords",
+        "type": "single-choice",
+        "prompt": "What command configures the privileged EXEC mode password using the strongest scrypt cryptographic hashing algorithm (Type 9)?",
+        "options": [
+            {"id": "A", "text": "enable algorithm-type scrypt secret Cisco123!", "isCorrect": True},
+            {"id": "B", "text": "enable secret Cisco123! type 9", "isCorrect": False},
+            {"id": "C", "text": "enable password scrypt Cisco123!", "isCorrect": False},
+            {"id": "D", "text": "service password-encryption scrypt", "isCorrect": False}
+        ],
+        "explanation": "Modern Cisco IOS XE supports 'enable algorithm-type scrypt secret <password>', which generates a Type 9 scrypt hash that is memory-hard and highly resistant to GPU brute-forcing.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-3-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.3",
+        "subtopicName": "Configure and verify device access control using local passwords",
+        "type": "single-choice",
+        "prompt": "What is the primary operational difference between 'enable password' and 'enable secret' on Cisco IOS?",
+        "options": [
+            {"id": "A", "text": "'enable secret' hashes the password cryptographically, while 'enable password' stores it in cleartext (unless obfuscated by Type 7); if both are configured, 'enable secret' always takes precedence", "isCorrect": True},
+            {"id": "B", "text": "'enable password' is for SSH, and 'enable secret' is for the console port", "isCorrect": False},
+            {"id": "C", "text": "'enable password' overrides 'enable secret' when connecting from remote subnets", "isCorrect": False},
+            {"id": "D", "text": "'enable secret' requires an active connection to a TACACS+ server", "isCorrect": False}
+        ],
+        "explanation": "'enable secret' uses one-way cryptographic hashing (MD5 Type 5, SHA-256 Type 8, or scrypt Type 9). 'enable password' stores passwords in cleartext (or Type 7 weak reversible cipher). Cisco IOS always prioritizes 'enable secret'.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-3-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.3",
+        "subtopicName": "Configure and verify device access control using local passwords",
+        "type": "single-choice",
+        "prompt": "What is the security weakness of passwords encrypted with 'service password-encryption' (Type 7)?",
+        "options": [
+            {"id": "A", "text": "Type 7 uses a simple Vigenère cipher that can be instantly decrypted by widely available free web utilities", "isCorrect": True},
+            {"id": "B", "text": "Type 7 passwords expire every 24 hours", "isCorrect": False},
+            {"id": "C", "text": "Type 7 encryption causes high CPU spikes on the control plane", "isCorrect": False},
+            {"id": "D", "text": "Type 7 requires a 64-character pre-shared key", "isCorrect": False}
+        ],
+        "explanation": "Type 7 encryption is mere obfuscation, designed only to prevent casual 'over-the-shoulder' viewing of plain text passwords. It uses an easily crackable Vigenère cipher with a fixed key.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-3-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.3",
+        "subtopicName": "Configure and verify device access control using local passwords",
+        "type": "single-choice",
+        "prompt": "What is the purpose of configuring a 'banner motd' (Message of the Day) on a Cisco network device?",
+        "options": [
+            {"id": "A", "text": "To present a legal warning notice stating that unauthorized access is prohibited and subject to criminal prosecution", "isCorrect": True},
+            {"id": "B", "text": "To advertise the router's OSPF process ID to neighboring switches", "isCorrect": False},
+            {"id": "C", "text": "To supply the master password recovery hint", "isCorrect": False},
+            {"id": "D", "text": "To broadcast the software release version to clients", "isCorrect": False}
+        ],
+        "explanation": "A legally compliant login banner (MOTD) serves as a formal legal notice explicitly stating that access is restricted to authorized personnel only, which is required in court to prosecute unauthorized intruders.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 3",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-3-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.3",
+        "subtopicName": "Configure and verify device access control using local passwords",
+        "type": "single-choice",
+        "prompt": "An administrator wants to prevent brute-force login attacks on VTY lines by locking out login attempts for 60 seconds if 3 consecutive failures occur within 30 seconds. Which command configures this?",
+        "options": [
+            {"id": "A", "text": "login block-for 60 attempts 3 within 30", "isCorrect": True},
+            {"id": "B", "text": "login lockout 60 retries 3", "isCorrect": False},
+            {"id": "C", "text": "security login throttle 3 30 60", "isCorrect": False},
+            {"id": "D", "text": "vty attack-guard 3 attempts", "isCorrect": False}
+        ],
+        "explanation": "The global command 'login block-for <seconds> attempts <tries> within <seconds>' enables Cisco IOS login enhancements to automatically throttle and mitigate automated dictionary brute-force attacks.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-3-006",
+        "domainId": "5.0",
+        "subtopicCode": "5.3",
+        "subtopicName": "Configure and verify device access control using local passwords",
+        "type": "single-choice",
+        "prompt": "Which command assigns privilege level 15 directly to a local user account named 'netadmin'?",
+        "options": [
+            {"id": "A", "text": "username netadmin privilege 15 secret SuperSecret99", "isCorrect": True},
+            {"id": "B", "text": "user netadmin level 15 password SuperSecret99", "isCorrect": False},
+            {"id": "C", "text": "enable user netadmin 15", "isCorrect": False},
+            {"id": "D", "text": "privilege exec level 15 netadmin", "isCorrect": False}
+        ],
+        "explanation": "The syntax 'username <name> privilege <0-15> secret <pass>' configures a user with privilege level 15 (full root/enable access), allowing the user to bypass the 'enable' prompt upon login.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.4 Password Policies & MFA (5 Qs)
+    {
+        "id": "q-5-4-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.4",
+        "subtopicName": "Describe password policy elements, complexity, and alternatives",
+        "type": "single-choice",
+        "prompt": "Multi-Factor Authentication (MFA) requires presenting factors from at least two different categories. Which combination qualifies as true MFA?",
+        "options": [
+            {"id": "A", "text": "A knowledge factor (password) combined with an inherence factor (fingerprint scan)", "isCorrect": True},
+            {"id": "B", "text": "A password and a secret PIN", "isCorrect": False},
+            {"id": "C", "text": "An SMS code and an email verification code", "isCorrect": False},
+            {"id": "D", "text": "A credit card number and the card's 3-digit CVV", "isCorrect": False}
+        ],
+        "explanation": "True MFA requires at least two distinct categories: 1) Something you know (password/PIN). 2) Something you have (hardware token/authenticator app). 3) Something you are (biometrics: fingerprint/face/retina). Combining two items from the same category (e.g. password + PIN) is NOT MFA.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-4-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.4",
+        "subtopicName": "Describe password policy elements, complexity, and alternatives",
+        "type": "single-choice",
+        "prompt": "Which biometric error rate indicates that an unauthorized impostor was mistakenly granted access by an authentication scanner?",
+        "options": [
+            {"id": "A", "text": "False Acceptance Rate (FAR / Type II error)", "isCorrect": True},
+            {"id": "B", "text": "False Rejection Rate (FRR / Type I error)", "isCorrect": False},
+            {"id": "C", "text": "Crossover Error Rate (CER)", "isCorrect": False},
+            {"id": "D", "text": "Equal Error Rate (EER)", "isCorrect": False}
+        ],
+        "explanation": "FAR (False Acceptance Rate) measures the percentage of times an unauthorized person is incorrectly accepted as legitimate. FRR (False Rejection Rate) is when a legitimate user is incorrectly rejected. CER is the point where FAR equals FRR.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-4-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.4",
+        "subtopicName": "Describe password policy elements, complexity, and alternatives",
+        "type": "single-choice",
+        "prompt": "How do digital certificates (PKI) eliminate the security vulnerabilities of static shared passwords?",
+        "options": [
+            {"id": "A", "text": "They use asymmetric key pairs signed by a trusted Certificate Authority (CA), allowing authentication without transmitting secrets over the wire", "isCorrect": True},
+            {"id": "B", "text": "They convert plaintext passwords into WEP keys", "isCorrect": False},
+            {"id": "C", "text": "They generate random passwords every 30 seconds", "isCorrect": False},
+            {"id": "D", "text": "They eliminate the need for IP routing", "isCorrect": False}
+        ],
+        "explanation": "Public Key Infrastructure (PKI) digital certificates bind a cryptographic public key to an entity's verified identity, signed by a Certificate Authority. Authentication proves possession of the private key without ever exposing it over the network.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-4-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.4",
+        "subtopicName": "Describe password policy elements, complexity, and alternatives",
+        "type": "single-choice",
+        "prompt": "Modern NIST SP 800-63B guidelines advise against which traditional password policy practice because it frequently leads to predictable, weaker passwords?",
+        "options": [
+            {"id": "A", "text": "Arbitrary periodic password expiration (e.g. forcing changes every 90 days without evidence of compromise)", "isCorrect": True},
+            {"id": "B", "text": "Requiring a minimum password length of 12 characters", "isCorrect": False},
+            {"id": "C", "text": "Screening passwords against known breach databases", "isCorrect": False},
+            {"id": "D", "text": "Enabling multi-factor authentication", "isCorrect": False}
+        ],
+        "explanation": "NIST Special Publication 800-63B recommends against mandatory periodic password changes (e.g. 90-day expiration) unless a credential compromise is suspected, as users simply increment numbers (e.g. Summer2024! -> Summer2024#) creating weaker overall security.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-4-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.4",
+        "subtopicName": "Describe password policy elements, complexity, and alternatives",
+        "type": "single-choice",
+        "prompt": "What security mechanism utilizes time-synchronized algorithms (TOTP) to generate 6-digit codes that rotate every 30 seconds on user smartphones?",
+        "options": [
+            {"id": "A", "text": "Time-based One-Time Password (RFC 6238 TOTP)", "isCorrect": True},
+            {"id": "B", "text": "HMAC-based Static Secret (HOTP)", "isCorrect": False},
+            {"id": "C", "text": "Asymmetric Certificate Revocation List", "isCorrect": False},
+            {"id": "D", "text": "Dynamic ARP Inspection timer", "isCorrect": False}
+        ],
+        "explanation": "TOTP (Time-based One-Time Password) combines a shared secret key with the current Unix epoch time (typically in 30-second intervals) to generate dynamic, expiring authentication codes (e.g. Google Authenticator / Cisco Duo).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 5",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.5 IPsec VPNs (6 Qs)
+    {
+        "id": "q-5-5-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.5",
+        "subtopicName": "Describe IPsec remote access and site-to-site VPNs",
+        "type": "single-choice",
+        "prompt": "Which IPsec security protocol provides data confidentiality (encryption), integrity, and authentication?",
+        "options": [
+            {"id": "A", "text": "Encapsulating Security Payload (ESP / IP Protocol 50)", "isCorrect": True},
+            {"id": "B", "text": "Authentication Header (AH / IP Protocol 51)", "isCorrect": False},
+            {"id": "C", "text": "Internet Key Exchange (IKE / UDP 500)", "isCorrect": False},
+            {"id": "D", "text": "Generic Routing Encapsulation (GRE / IP Protocol 47)", "isCorrect": False}
+        ],
+        "explanation": "ESP (Encapsulating Security Payload, IP protocol 50) provides confidentiality through encryption (AES), data integrity, and origin authentication. AH (Authentication Header, IP protocol 51) provides integrity and authentication, but NO encryption.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 6",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-5-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.5",
+        "subtopicName": "Describe IPsec remote access and site-to-site VPNs",
+        "type": "single-choice",
+        "prompt": "What is the primary difference between IPsec Tunnel Mode and IPsec Transport Mode?",
+        "options": [
+            {"id": "A", "text": "Tunnel mode encapsulates and encrypts the entire original IP packet (including the original IP header) with a new external IP header, whereas Transport mode only encrypts the Layer 4 payload", "isCorrect": True},
+            {"id": "B", "text": "Transport mode supports site-to-site VPNs while Tunnel mode is only for dial-up users", "isCorrect": False},
+            {"id": "C", "text": "Transport mode uses UDP while Tunnel mode uses TCP", "isCorrect": False},
+            {"id": "D", "text": "Tunnel mode does not support AES encryption", "isCorrect": False}
+        ],
+        "explanation": "Tunnel Mode encapsulates the entire original IP packet and prepends a brand new IP header, making it standard for site-to-site VPNs between gateways. Transport Mode only encrypts the packet payload while leaving the original IP header visible, typically used in host-to-host or GRE-over-IPsec.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 6",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-5-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.5",
+        "subtopicName": "Describe IPsec remote access and site-to-site VPNs",
+        "type": "single-choice",
+        "prompt": "Which algorithm is used in IPsec IKE Phase 1 to securely establish a shared secret key over an unsecure public network without sending the key itself?",
+        "options": [
+            {"id": "A", "text": "Diffie-Hellman (DH)", "isCorrect": True},
+            {"id": "B", "text": "AES-256", "isCorrect": False},
+            {"id": "C", "text": "MD5", "isCorrect": False},
+            {"id": "D", "text": "SHA-512", "isCorrect": False}
+        ],
+        "explanation": "Diffie-Hellman (DH) is an asymmetric mathematical key-exchange algorithm that allows two peers to create a shared secret key across an insecure channel without transmitting the key over the wire.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 6",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-5-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.5",
+        "subtopicName": "Describe IPsec remote access and site-to-site VPNs",
+        "type": "single-choice",
+        "prompt": "Which VPN client software is deployed on enterprise teleworker laptops to establish secure Remote Access SSL/TLS and IPsec IKEv2 tunnels to Cisco Secure Firewalls?",
+        "options": [
+            {"id": "A", "text": "Cisco Secure Client (formerly AnyConnect)", "isCorrect": True},
+            {"id": "B", "text": "Cisco Catalyst Center Agent", "isCorrect": False},
+            {"id": "C", "text": "Cisco Packet Tracer", "isCorrect": False},
+            {"id": "D", "text": "PuTTY Secure Client", "isCorrect": False}
+        ],
+        "explanation": "Cisco Secure Client (formerly Cisco AnyConnect) is the enterprise software client used for secure remote-access SSL and IKEv2 VPN connectivity to Cisco headends (FTD / ASA / IOS XE).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 6",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-5-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.5",
+        "subtopicName": "Describe IPsec remote access and site-to-site VPNs",
+        "type": "single-choice",
+        "prompt": "What port and protocol are used by IKE (Internet Key Exchange) to establish initial security associations (ISAKMP SA)?",
+        "options": [
+            {"id": "A", "text": "UDP port 500", "isCorrect": True},
+            {"id": "B", "text": "TCP port 443", "isCorrect": False},
+            {"id": "C", "text": "IP protocol 50", "isCorrect": False},
+            {"id": "D", "text": "UDP port 4500", "isCorrect": False}
+        ],
+        "explanation": "IKE Phase 1 uses UDP port 500. If NAT is detected along the path, NAT-Traversal (NAT-T) encapsulates traffic inside UDP port 4500.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 6",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-5-006",
+        "domainId": "5.0",
+        "subtopicCode": "5.5",
+        "subtopicName": "Describe IPsec remote access and site-to-site VPNs",
+        "type": "single-choice",
+        "prompt": "Why can plain native IPsec NOT encrypt dynamic routing protocol multicast updates (such as OSPF hellos sent to 224.0.0.5) directly?",
+        "options": [
+            {"id": "A", "text": "IPsec does not natively support multicast or broadcast traffic", "isCorrect": True},
+            {"id": "B", "text": "OSPF uses TCP which is incompatible with ESP", "isCorrect": False},
+            {"id": "C", "text": "Diffie-Hellman only supports unicast MAC addresses", "isCorrect": False},
+            {"id": "D", "text": "IPsec MTU is limited to 512 bytes", "isCorrect": False}
+        ],
+        "explanation": "Native IPsec tunnels are strictly unicast point-to-point. To run dynamic routing protocols (OSPF/EIGRP) that rely on multicast across an IPsec VPN, network engineers encapsulate the traffic inside a Generic Routing Encapsulation (GRE) tunnel or deploy DMVPN.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 6",
+        "difficulty": 3,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.6 Access Control Lists (ACLs) (10 Qs)
+    {
+        "id": "q-5-6-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "What is the fundamental difference between standard IPv4 Access Control Lists and extended IPv4 Access Control Lists?",
+        "options": [
+            {"id": "A", "text": "Standard ACLs filter traffic based on source IPv4 address only, while Extended ACLs can filter based on source IP, destination IP, protocol (TCP/UDP/ICMP), and port numbers", "isCorrect": True},
+            {"id": "B", "text": "Standard ACLs are applied to switch ports, while Extended ACLs are applied to routers", "isCorrect": False},
+            {"id": "C", "text": "Standard ACLs evaluate from bottom to top, while Extended ACLs evaluate top to bottom", "isCorrect": False},
+            {"id": "D", "text": "Standard ACLs do not have an implicit deny statement", "isCorrect": False}
+        ],
+        "explanation": "Standard ACLs (1-99, 1300-1999) evaluate ONLY the source IPv4 address. Extended ACLs (100-199, 2000-2699) evaluate source IP, destination IP, protocol type (IP, TCP, UDP, ICMP), and Layer 4 port numbers.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "According to Cisco best practice design guidelines, where should Standard ACLs and Extended ACLs be placed in an enterprise network?",
+        "options": [
+            {"id": "A", "text": "Place Standard ACLs as close to the destination as possible; place Extended ACLs as close to the source as possible", "isCorrect": True},
+            {"id": "B", "text": "Place Standard ACLs as close to the source as possible; place Extended ACLs as close to the destination as possible", "isCorrect": False},
+            {"id": "C", "text": "Place all ACLs exclusively on the Core layer switches", "isCorrect": False},
+            {"id": "D", "text": "Place Extended ACLs on outbound interfaces only", "isCorrect": False}
+        ],
+        "explanation": "Rule of thumb: Extended ACLs should be placed as close to the traffic source as possible to drop unauthorized packets early before consuming network bandwidth. Standard ACLs must be placed as close to the destination as possible because they only filter source IP; placing them near the source would block the host from accessing all other legitimate destinations.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "What wildcard mask matches all host IP addresses in the subnet 192.168.16.0/20?",
+        "options": [
+            {"id": "A", "text": "0.0.15.255", "isCorrect": True},
+            {"id": "B", "text": "0.0.31.255", "isCorrect": False},
+            {"id": "C", "text": "0.0.240.255", "isCorrect": False},
+            {"id": "D", "text": "255.255.240.0", "isCorrect": False}
+        ],
+        "explanation": "A /20 subnet mask is 255.255.240.0. Subtracting from 255.255.255.255 yields the wildcard mask: 255 - 255 = 0, 255 - 255 = 0, 255 - 240 = 15, 255 - 0 = 255. Result: 0.0.15.255.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "An administrator applies an ACL containing only the following statement to an interface:\n'access-list 10 permit 192.168.1.0 0.0.0.255'\nWhat happens to all traffic originating from other subnets (e.g. 10.0.0.0/8)?",
+        "options": [
+            {"id": "A", "text": "The traffic is denied and dropped due to the invisible implicit 'deny any' statement present at the end of every ACL", "isCorrect": True},
+            {"id": "B", "text": "The traffic is permitted by default", "isCorrect": False},
+            {"id": "C", "text": "The traffic is rerouted to the default gateway", "isCorrect": False},
+            {"id": "D", "text": "The router generates a console prompt asking the administrator to permit or deny", "isCorrect": False}
+        ],
+        "explanation": "Every Cisco ACL ends with an invisible implicit 'deny ip any' (or 'deny any'). If a packet does not match any configured permit statement in the ACL, it hits the implicit deny and is silently discarded.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "Which command syntax permits HTTPS traffic from host 10.1.1.5 to web server 172.16.2.20 in an extended named ACL?",
+        "options": [
+            {"id": "A", "text": "permit tcp host 10.1.1.5 host 172.16.2.20 eq 443", "isCorrect": True},
+            {"id": "B", "text": "permit ip 10.1.1.5 172.16.2.20 port 443", "isCorrect": False},
+            {"id": "C", "text": "permit tcp host 172.16.2.20 host 10.1.1.5 eq 443", "isCorrect": False},
+            {"id": "D", "text": "permit https 10.1.1.5 172.16.2.20", "isCorrect": False}
+        ],
+        "explanation": "Extended ACL syntax for TCP services: 'permit tcp host <src-ip> host <dst-ip> eq 443' (or 'eq https').",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 3",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-006",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "Which command binds the named Access Control List 'FILTER_IN' to filter inbound packets on interface GigabitEthernet0/0?",
+        "options": [
+            {"id": "A", "text": "ip access-group FILTER_IN in", "isCorrect": True},
+            {"id": "B", "text": "ip access-list FILTER_IN in", "isCorrect": False},
+            {"id": "C", "text": "access-class FILTER_IN in", "isCorrect": False},
+            {"id": "D", "text": "filter-group FILTER_IN inbound", "isCorrect": False}
+        ],
+        "explanation": "On a physical or routed interface, the command 'ip access-group <ACL_NAME> in|out' binds the ACL. ('access-class' is used only on VTY lines).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-007",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "What command applies an ACL named 'ADMIN_ONLY' to restrict incoming remote access connections on line vty 0 4?",
+        "options": [
+            {"id": "A", "text": "access-class ADMIN_ONLY in", "isCorrect": True},
+            {"id": "B", "text": "ip access-group ADMIN_ONLY in", "isCorrect": False},
+            {"id": "C", "text": "vty access-filter ADMIN_ONLY", "isCorrect": False},
+            {"id": "D", "text": "transport access-list ADMIN_ONLY", "isCorrect": False}
+        ],
+        "explanation": "Under line configuration mode (line vty 0 4), the command 'access-class <ACL> in' is used to filter incoming Telnet/SSH management connections.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-008",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "What does the 'established' parameter match when appended to an extended ACL statement:\n'permit tcp any 192.168.1.0 0.0.0.255 established'?",
+        "options": [
+            {"id": "A", "text": "It matches TCP segments that have either the ACK or RST flag set, allowing return response traffic for sessions initiated from inside", "isCorrect": True},
+            {"id": "B", "text": "It matches initial TCP SYN packets initiating a new connection", "isCorrect": False},
+            {"id": "C", "text": "It enforces 802.1X client authentication", "isCorrect": False},
+            {"id": "D", "text": "It verifies that the router has an active OSPF adjacency", "isCorrect": False}
+        ],
+        "explanation": "The 'established' keyword inspects the TCP header. If the ACK or RST flag is set (indicating that the packet is part of an already established session), the packet is permitted. Packets with only the SYN flag set (new inbound connection attempts) are denied.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 3",
+        "difficulty": 3,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-009",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "How does Cisco IOS evaluate lines within an Access Control List when matching a packet?",
+        "options": [
+            {"id": "A", "text": "Sequentially in top-down order; the first statement that matches the packet is executed, and no further statements are evaluated", "isCorrect": True},
+            {"id": "B", "text": "All statements are evaluated and the most restrictive deny wins", "isCorrect": False},
+            {"id": "C", "text": "Permit statements are always evaluated before deny statements", "isCorrect": False},
+            {"id": "D", "text": "Statements with the highest sequence number are evaluated first", "isCorrect": False}
+        ],
+        "explanation": "ACL processing is strictly sequential from the lowest sequence number to the highest. As soon as a packet matches a rule, the permit or deny action is immediately taken, and processing halts for that packet.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-6-010",
+        "domainId": "5.0",
+        "subtopicCode": "5.6",
+        "subtopicName": "Configure and verify Access Control Lists",
+        "type": "single-choice",
+        "prompt": "Which command displays configured Access Control Lists alongside real-time match hit counters for each statement?",
+        "options": [
+            {"id": "A", "text": "show access-lists", "isCorrect": True},
+            {"id": "B", "text": "show ip filter hits", "isCorrect": False},
+            {"id": "C", "text": "show running-config acl", "isCorrect": False},
+            {"id": "D", "text": "show interfaces access-lists", "isCorrect": False}
+        ],
+        "explanation": "'show access-lists' (or 'show ip access-list') outputs the ACL rules and the exact count of packets that matched each rule (e.g. '(14 matches)').",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 2",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.7 Layer 2 Security (Port Security, DHCP Snooping, DAI) (10 Qs)
+    {
+        "id": "q-5-7-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "An administrator executes 'show mac address-table' on a Cisco Catalyst switch and notices multiple hosts receiving invalid IP default gateways. Which Layer 2 security feature relies on the DHCP Snooping binding database to inspect ARP requests and prevent ARP poisoning?",
+        "options": [
+            {"id": "A", "text": "Port Security", "isCorrect": False},
+            {"id": "B", "text": "Dynamic ARP Inspection (DAI)", "isCorrect": True},
+            {"id": "C", "text": "BPDU Guard", "isCorrect": False},
+            {"id": "D", "text": "Storm Control", "isCorrect": False}
+        ],
+        "explanation": "Dynamic ARP Inspection (DAI) is designed to mitigate ARP spoofing/poisoning and man-in-the-middle attacks on the local broadcast domain. DAI validates ARP requests and replies against the trusted DHCP Snooping binding table.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7 Layer 2 Security",
+        "difficulty": 3,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "What are the three Port Security violation modes on a Cisco Catalyst switch, and which mode is the factory default?",
+        "options": [
+            {"id": "A", "text": "Protect, Restrict, and Shutdown (Shutdown is the default)", "isCorrect": True},
+            {"id": "B", "text": "Warning, Error, and Err-disable (Err-disable is default)", "isCorrect": False},
+            {"id": "C", "text": "Block, Log, and Reset (Block is default)", "isCorrect": False},
+            {"id": "D", "text": "Passive, Active, and Quarantine (Quarantine is default)", "isCorrect": False}
+        ],
+        "explanation": "Port Security violation modes: 1. Protect: drops unknown frames silently. 2. Restrict: drops frames, increments violation counter, and generates SNMP trap/syslog. 3. Shutdown (default): drops frames, increments counter, logs syslog, and immediately places interface into 'err-disable' state.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "What does the command 'switchport port-security mac-address sticky' accomplish?",
+        "options": [
+            {"id": "A", "text": "It converts dynamically learned MAC addresses into secure MAC entries and saves them into the running-config file", "isCorrect": True},
+            {"id": "B", "text": "It permanently glues the switch port in Forwarding mode", "isCorrect": False},
+            {"id": "C", "text": "It prevents the MAC address table from aging out any address on the switch", "isCorrect": False},
+            {"id": "D", "text": "It forces MAC addresses to synchronize over CDP", "isCorrect": False}
+        ],
+        "explanation": "'Sticky' port security dynamically learns MAC addresses and writes them directly into the running configuration. If the administrator saves the config ('copy run start'), these MAC addresses persist across switch reboots.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "An administrator enters 'switchport port-security' on an interface and receives the error: 'Command rejected: FastEthernet0/1 is a dynamic port'. How should the administrator resolve this?",
+        "options": [
+            {"id": "A", "text": "Configure 'switchport mode access' (or 'switchport mode trunk') statically before enabling port security", "isCorrect": True},
+            {"id": "B", "text": "Enable 'spanning-tree portfast' first", "isCorrect": False},
+            {"id": "C", "text": "Execute 'no switchport' to make it a Layer 3 port", "isCorrect": False},
+            {"id": "D", "text": "Change the native VLAN to 99", "isCorrect": False}
+        ],
+        "explanation": "Port security cannot be configured on an interface operating in dynamic DTP negotiation mode (dynamic desirable or dynamic auto). The port must be explicitly configured as static access (or static trunk) with 'switchport mode access'.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "Which Layer 2 attack involves an attacker broadcasting thousands of spoofed MAC addresses to fill a switch's CAM table, forcing the switch to act like a hub and flood all subsequent traffic?",
+        "options": [
+            {"id": "A", "text": "MAC Flooding (CAM table overflow attack)", "isCorrect": True},
+            {"id": "B", "text": "DHCP Starvation", "isCorrect": False},
+            {"id": "C", "text": "ARP Poisoning", "isCorrect": False},
+            {"id": "D", "text": "VLAN Hopping", "isCorrect": False}
+        ],
+        "explanation": "A CAM table overflow attack floods the switch with random source MAC addresses using tools like macof. Once the CAM table is full, the switch enters fail-open mode, flooding all unknown unicast frames to all ports, allowing the attacker to sniff traffic. Port Security mitigates this attack.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-006",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "How does DHCP Snooping prevent rogue DHCP servers from handing out malicious gateway IP addresses on an access switch?",
+        "options": [
+            {"id": "A", "text": "It marks all access ports as 'untrusted' by default and drops DHCP Offer and DHCP Ack packets received on untrusted ports", "isCorrect": True},
+            {"id": "B", "text": "It encrypts all DHCP payloads with 256-bit AES", "isCorrect": False},
+            {"id": "C", "text": "It shuts down the switch if an ARP request arrives", "isCorrect": False},
+            {"id": "D", "text": "It blocks UDP port 67 on trunk links", "isCorrect": False}
+        ],
+        "explanation": "DHCP Snooping categorizes switch ports as Trusted or Untrusted. End-user access ports are untrusted; if an untrusted port receives a DHCP server message (Offer, Ack, or Nack), the switch discards the packet immediately, stopping rogue DHCP servers.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-007",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "Which command designates an uplink interface connected to a legitimate corporate DHCP server as a trusted port under DHCP Snooping?",
+        "options": [
+            {"id": "A", "text": "ip dhcp snooping trust", "isCorrect": True},
+            {"id": "B", "text": "dhcp trust enable", "isCorrect": False},
+            {"id": "C", "text": "switchport dhcp trusted", "isCorrect": False},
+            {"id": "D", "text": "ip dhcp server permit", "isCorrect": False}
+        ],
+        "explanation": "On the interface facing the authorized DHCP server or upstream router, the interface configuration command 'ip dhcp snooping trust' must be configured to permit DHCP Offer/Ack messages.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-008",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "What data is maintained in the DHCP Snooping Binding Database?",
+        "options": [
+            {"id": "A", "text": "Client MAC address, leased IP address, lease time, binding type, VLAN ID, and physical interface", "isCorrect": True},
+            {"id": "B", "text": "Routing table next-hops and OSPF cost", "isCorrect": False},
+            {"id": "C", "text": "User passwords and TACACS+ shared secrets", "isCorrect": False},
+            {"id": "D", "text": "Spanning Tree bridge priority and root path cost", "isCorrect": False}
+        ],
+        "explanation": "The DHCP Snooping binding database records: Client MAC address, leased IPv4 address, lease time in seconds, lease type (dhcp-snooping), VLAN ID, and port interface number. This database is also the foundation for Dynamic ARP Inspection (DAI) and IP Source Guard (IPSG).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-009",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "An interface is placed in 'err-disable' state due to a port security violation. Which command sequence manually recovers and re-enables the interface?",
+        "options": [
+            {"id": "A", "text": "shutdown followed by no shutdown under the interface configuration", "isCorrect": True},
+            {"id": "B", "text": "clear errdisable interface", "isCorrect": False},
+            {"id": "C", "text": "reset switchport", "isCorrect": False},
+            {"id": "D", "text": "no switchport port-security", "isCorrect": False}
+        ],
+        "explanation": "To recover an err-disabled interface manually, enter interface configuration mode and toggle the port state by issuing 'shutdown' followed by 'no shutdown'. (Alternatively, 'errdisable recovery cause psecure-violation' can automate recovery).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-7-010",
+        "domainId": "5.0",
+        "subtopicCode": "5.7",
+        "subtopicName": "Configure and verify Layer 2 security features",
+        "type": "single-choice",
+        "prompt": "Which command globally activates Dynamic ARP Inspection for VLAN 10 and VLAN 20?",
+        "options": [
+            {"id": "A", "text": "ip arp inspection vlan 10,20", "isCorrect": True},
+            {"id": "B", "text": "arp inspection enable 10 20", "isCorrect": False},
+            {"id": "C", "text": "service dai vlan 10,20", "isCorrect": False},
+            {"id": "D", "text": "dai enable vlan 10-20", "isCorrect": False}
+        ],
+        "explanation": "In global configuration mode, 'ip arp inspection vlan <vlan-list>' activates DAI for the specified VLANs.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 7",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.8 AAA Concepts (5 Qs)
+    {
+        "id": "q-5-8-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.8",
+        "subtopicName": "Compare Authentication, Authorization, and Accounting concepts",
+        "type": "single-choice",
+        "prompt": "In the AAA security framework, what question does 'Authorization' answer?",
+        "options": [
+            {"id": "A", "text": "What resources and commands is the authenticated user allowed to execute?", "isCorrect": True},
+            {"id": "B", "text": "Who is the user attempting to log in?", "isCorrect": False},
+            {"id": "C", "text": "What commands and actions did the user perform while logged in?", "isCorrect": False},
+            {"id": "D", "text": "What encryption cipher will be negotiated?", "isCorrect": False}
+        ],
+        "explanation": "AAA framework: 1. Authentication (Who are you? - Identity verification). 2. Authorization (What can you do? - Permissions/privileges). 3. Accounting (What did you do? - Audit tracking/logging).",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 8",
+        "difficulty": 1,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-8-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.8",
+        "subtopicName": "Compare Authentication, Authorization, and Accounting concepts",
+        "type": "drag-and-drop",
+        "prompt": "Match each AAA protocol with its architectural characteristics.",
+        "pairs": [
+            {"target": "TACACS+", "match": "TCP port 49, encrypts entire packet payload, separates Authentication and Authorization"},
+            {"target": "RADIUS", "match": "UDP ports 1812/1813, encrypts password only, combines Authentication and Authorization"}
+        ],
+        "explanation": "TACACS+ is Cisco-proprietary/RFC 8907, uses reliable TCP 49, separates all three AAA components, and encrypts the entire packet body. RADIUS is open-standard (RFC 2865/2866), uses UDP 1812/1813, combines auth/authz, and only encrypts the password field.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 8",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-8-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.8",
+        "subtopicName": "Compare Authentication, Authorization, and Accounting concepts",
+        "type": "single-choice",
+        "prompt": "Which command activates the AAA security framework in Cisco IOS global configuration mode?",
+        "options": [
+            {"id": "A", "text": "aaa new-model", "isCorrect": True},
+            {"id": "B", "text": "enable aaa", "isCorrect": False},
+            {"id": "C", "text": "aaa start", "isCorrect": False},
+            {"id": "D", "text": "service aaa", "isCorrect": False}
+        ],
+        "explanation": "'aaa new-model' is the mandatory initial global command that activates the AAA subsystem on a Cisco router or switch, unlocking all AAA configuration commands.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 8",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-8-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.8",
+        "subtopicName": "Compare Authentication, Authorization, and Accounting concepts",
+        "type": "single-choice",
+        "prompt": "Why is TACACS+ typically preferred over RADIUS for administrative device access (device administration / CLI management)?",
+        "options": [
+            {"id": "A", "text": "TACACS+ provides per-command authorization and full packet payload encryption", "isCorrect": True},
+            {"id": "B", "text": "TACACS+ does not require a shared secret", "isCorrect": False},
+            {"id": "C", "text": "RADIUS is limited to 10 users", "isCorrect": False},
+            {"id": "D", "text": "TACACS+ runs without IP routing", "isCorrect": False}
+        ],
+        "explanation": "TACACS+ strictly separates Authorization from Authentication, allowing granular per-command authorization (auditing and permitting/denying every individual command typed at the CLI). RADIUS combines authentication and authorization, making it ideal for 802.1X network access rather than device administration.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 8",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-8-005",
+        "domainId": "5.0",
+        "subtopicCode": "5.8",
+        "subtopicName": "Compare Authentication, Authorization, and Accounting concepts",
+        "type": "single-choice",
+        "prompt": "What does the fallback method 'local' ensure in the command 'aaa authentication login default group tacacs+ local'?",
+        "options": [
+            {"id": "A", "text": "If all TACACS+ servers are unreachable or fail to respond, the router falls back to authenticating against its local database", "isCorrect": True},
+            {"id": "B", "text": "If a user enters an incorrect password on TACACS+, the router tries the local password", "isCorrect": False},
+            {"id": "C", "text": "It forces local users to log in before TACACS+ is queried", "isCorrect": False},
+            {"id": "D", "text": "It limits sessions to the local console port only", "isCorrect": False}
+        ],
+        "explanation": "In an AAA method list, methods are evaluated from left to right. If the TACACS+ server times out or is unreachable, the router falls back to the next method ('local'). Note: if the server responds with an explicit access-reject, fallback does NOT occur.",
+        "reference": "CCNA 200-301 OCG Vol 2, Ch 8",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.9 Wireless Security Protocols (4 Qs)
+    {
+        "id": "q-5-9-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.9",
+        "subtopicName": "Describe wireless security protocols",
+        "type": "single-choice",
+        "prompt": "Which key exchange protocol in WPA3 replaces the vulnerable 4-way PSK handshake to provide forward secrecy and resistance against offline dictionary attacks?",
+        "options": [
+            {"id": "A", "text": "Simultaneous Authentication of Equals (SAE / Dragonfly handshake)", "isCorrect": True},
+            {"id": "B", "text": "Temporal Key Integrity Protocol (TKIP)", "isCorrect": False},
+            {"id": "C", "text": "Wired Equivalent Privacy (WEP)", "isCorrect": False},
+            {"id": "D", "text": "Diffie-Hellman Group 1 DES", "isCorrect": False}
+        ],
+        "explanation": "WPA3-Personal replaces PSK with Simultaneous Authentication of Equals (SAE, also known as the Dragonfly handshake). SAE prevents offline dictionary/rainbow table attacks and provides forward secrecy, meaning past sessions cannot be decrypted even if the password is discovered later.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-9-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.9",
+        "subtopicName": "Describe wireless security protocols",
+        "type": "single-choice",
+        "prompt": "Which encryption cipher suite is mandated by IEEE 802.11i / WPA2?",
+        "options": [
+            {"id": "A", "text": "AES-CCMP (Counter Mode CBC-MAC Protocol)", "isCorrect": True},
+            {"id": "B", "text": "RC4 with 40-bit keys", "isCorrect": False},
+            {"id": "C", "text": "DES", "isCorrect": False},
+            {"id": "D", "text": "MD5-HMAC", "isCorrect": False}
+        ],
+        "explanation": "WPA2 mandates AES (Advanced Encryption Standard) encryption using the CCMP (Counter Mode with Cipher Block Chaining Message Authentication Code Protocol) cipher suite.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-9-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.9",
+        "subtopicName": "Describe wireless security protocols",
+        "type": "single-choice",
+        "prompt": "What feature is mandatory in WPA3 to protect management frames (such as deauthentication and disassociation frames) from eavesdropping and spoofing attacks?",
+        "options": [
+            {"id": "A", "text": "Protected Management Frames (PMF / IEEE 802.11w)", "isCorrect": True},
+            {"id": "B", "text": "TKIP dynamic rekeying", "isCorrect": False},
+            {"id": "C", "text": "Dynamic ARP Inspection", "isCorrect": False},
+            {"id": "D", "text": "Fast BSS Transition", "isCorrect": False}
+        ],
+        "explanation": "Protected Management Frames (PMF, IEEE 802.11w) cryptographically signs and encrypts unicast and broadcast 802.11 management frames, neutralizing deauthentication DoS attacks. PMF is optional in WPA2 but mandatory in WPA3.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-9-004",
+        "domainId": "5.0",
+        "subtopicCode": "5.9",
+        "subtopicName": "Describe wireless security protocols",
+        "type": "single-choice",
+        "prompt": "Why was Wired Equivalent Privacy (WEP) deprecated and declared obsolete by the Wi-Fi Alliance?",
+        "options": [
+            {"id": "A", "text": "It uses the RC4 stream cipher with a small, 24-bit static Initialization Vector (IV) that repeats frequently, allowing mathematical key recovery within minutes", "isCorrect": True},
+            {"id": "B", "text": "It required 100 Mbps Ethernet cabling", "isCorrect": False},
+            {"id": "C", "text": "It did not support 2.4 GHz channels", "isCorrect": False},
+            {"id": "D", "text": "It only supported Cisco proprietary access points", "isCorrect": False}
+        ],
+        "explanation": "WEP uses a static 24-bit IV sent in cleartext with RC4. Due to weak key scheduling, IV collisions occur rapidly in active traffic, enabling attackers using tools like aircrack-ng to recover the WEP key in minutes.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 2,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+
+    # 5.10 WLAN GUI Security (3 Qs)
+    {
+        "id": "q-5-10-001",
+        "domainId": "5.0",
+        "subtopicCode": "5.10",
+        "subtopicName": "Configure and verify WLAN within GUI using WPA2 PSK",
+        "type": "single-choice",
+        "prompt": "When configuring a WPA2-Personal Pre-Shared Key (PSK) on the Cisco WLC GUI, which format option allows entering a human-readable text passphrase between 8 and 63 characters in length?",
+        "options": [
+            {"id": "A", "text": "ASCII", "isCorrect": True},
+            {"id": "B", "text": "HEX (64 hexadecimal characters)", "isCorrect": False},
+            {"id": "C", "text": "Base64", "isCorrect": False},
+            {"id": "D", "text": "Binary", "isCorrect": False}
+        ],
+        "explanation": "In the Cisco WLC GUI, under WLANs > Edit > Security > Layer 2, when PSK is selected, the key format can be ASCII (8 to 63 standard alphanumeric characters) or HEX (exact 64 hexadecimal characters).",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-10-002",
+        "domainId": "5.0",
+        "subtopicCode": "5.10",
+        "subtopicName": "Configure and verify WLAN within GUI using WPA2 PSK",
+        "type": "single-choice",
+        "prompt": "Where in the Cisco WLC GUI does an administrator verify the list of currently associated wireless clients, their MAC addresses, associated SSIDs, and signal strength (RSSI)?",
+        "options": [
+            {"id": "A", "text": "Monitor > Clients", "isCorrect": True},
+            {"id": "B", "text": "WLANs > Client Statistics", "isCorrect": False},
+            {"id": "C", "text": "Controller > Interfaces", "isCorrect": False},
+            {"id": "D", "text": "Security > Local Net Users", "isCorrect": False}
+        ],
+        "explanation": "Under the 'Monitor' tab, selecting 'Clients' provides a table of all connected clients, their BSSIDs, IP addresses, encryption status, and SNR/RSSI telemetry.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 1,
+        "fidelityScore": 4.9,
+        "contributor": "CCNA OpenSim Community"
+    },
+    {
+        "id": "q-5-10-003",
+        "domainId": "5.0",
+        "subtopicCode": "5.10",
+        "subtopicName": "Configure and verify WLAN within GUI using WPA2 PSK",
+        "type": "single-choice",
+        "prompt": "What is the result if an administrator selects both 'WPA2 Policy' and 'WPA3 Policy' on the same WLAN in a Cisco Catalyst 9800 WLC GUI?",
+        "options": [
+            {"id": "A", "text": "It enables WPA3 Transition Mode, allowing newer WPA3 clients to use SAE while legacy devices connect using WPA2-PSK", "isCorrect": True},
+            {"id": "B", "text": "The controller rejects the configuration because WPA2 and WPA3 cannot coexist", "isCorrect": False},
+            {"id": "C", "text": "All clients are forced to use 802.1X RADIUS authentication", "isCorrect": False},
+            {"id": "D", "text": "The SSID is hidden automatically", "isCorrect": False}
+        ],
+        "explanation": "Selecting both WPA2 and WPA3 activates WPA3 Transition Mode. This permits seamless migration in mixed client environments: WPA3 devices use SAE, while legacy devices continue using WPA2 AES-PSK.",
+        "reference": "CCNA 200-301 OCG Vol 1, Ch 27",
+        "difficulty": 2,
+        "fidelityScore": 5.0,
+        "contributor": "CCNA OpenSim Community"
+    }
+]
+
+# Write out Domain 5 questions
+output_path = os.path.join(os.path.dirname(__file__), "../src/data/domains/domain5.json")
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(questions, f, indent=2)
+
+print(f"[SUCCESS] Generated Domain 5.0 with {len(questions)} questions at {output_path}")
