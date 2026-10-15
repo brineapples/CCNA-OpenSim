@@ -4,21 +4,68 @@
  * Fetches all 400 AI-generated questions directly from GitHub:
  * https://raw.githubusercontent.com/brineapples/CCNA-OpenSim/main/src/data/questions.json
  * 
- * Then distributes the questions across the 6 CCNA domain forms:
- * - Domain 1.0 Network Fundamentals (80 questions)
- * - Domain 2.0 Network Access (80 questions)
- * - Domain 3.0 IP Connectivity (100 questions)
- * - Domain 4.0 IP Services (40 questions)
- * - Domain 5.0 Security Fundamentals (60 questions)
- * - Domain 6.0 Automation and Programmability (40 questions)
- * 
  * Instructions:
  * 1. Go to https://script.new
  * 2. Paste this entire file.
- * 3. Run 'buildAllForms' (or build individual domains like 'buildDomain1Form').
+ * 3. Make sure the dropdown at the top says 'buildDomain1Form' (or 'buildAllForms').
+ * 4. Click the Run (▶) button.
+ * 5. Open the NEW URL printed in the Execution Log to see all 80 questions!
  */
 
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com/brineapples/CCNA-OpenSim/main/src/data/questions.json";
+
+// ==========================================
+// 🚀 RUN THESE FUNCTIONS FROM THE DROPDOWN:
+// ==========================================
+
+// Build Form 1 (All 80 Network Fundamentals questions)
+function buildDomain1Form() { 
+  return buildFormForDomain("1.0", "Network Fundamentals"); 
+}
+
+// Build Form 2 (All 80 Network Access questions)
+function buildDomain2Form() { 
+  return buildFormForDomain("2.0", "Network Access"); 
+}
+
+// Build Form 3 (All 100 IP Connectivity questions)
+function buildDomain3Form() { 
+  return buildFormForDomain("3.0", "IP Connectivity"); 
+}
+
+// Build Form 4 (All 40 IP Services questions)
+function buildDomain4Form() { 
+  return buildFormForDomain("4.0", "IP Services"); 
+}
+
+// Build Form 5 (All 60 Security Fundamentals questions)
+function buildDomain5Form() { 
+  return buildFormForDomain("5.0", "Security Fundamentals"); 
+}
+
+// Build Form 6 (All 40 Automation and Programmability questions)
+function buildDomain6Form() { 
+  return buildFormForDomain("6.0", "Automation and Programmability"); 
+}
+
+// Master function to build all 6 forms
+function buildAllForms() {
+  const sheet = getOrCreateMasterSheet();
+  Logger.log("Master Sheet URL: " + sheet.getUrl());
+  
+  buildDomain1Form();
+  buildDomain2Form();
+  buildDomain3Form();
+  buildDomain4Form();
+  buildDomain5Form();
+  buildDomain6Form();
+  
+  Logger.log("🎉 ALL 6 FORMS GENERATED FROM GITHUB REPO!");
+}
+
+// ==========================================
+// CORE BUILDER & FETCH LOGIC
+// ==========================================
 
 function fetchQuestionsFromGitHub() {
   Logger.log("📡 Fetching questions from GitHub: " + GITHUB_RAW_URL);
@@ -55,7 +102,7 @@ function buildFormForDomain(domainId, domainTitle) {
     return q.domainId === domainId;
   });
 
-  Logger.log("Found " + domainQuestions.length + " questions for Domain " + domainId);
+  Logger.log("Found " + domainQuestions.length + " questions for Domain " + domainId + ". Building form now...");
 
   const sheet = getOrCreateMasterSheet();
   const form = FormApp.create("CCNA OpenSim: Domain " + domainId + " (" + domainTitle + ") Audit");
@@ -142,32 +189,10 @@ function buildFormForDomain(domainId, domainTitle) {
 
   const pubUrl = form.getPublishedUrl();
   Logger.log("\\n=======================================================");
-  Logger.log("🎉 Domain " + domainId + " Form Ready!");
-  Logger.log("Live Form URL: " + pubUrl);
+  Logger.log("🎉 Domain " + domainId + " Form Ready with " + domainQuestions.length + " questions!");
+  Logger.log("👉 OPEN THIS NEW URL TO SEE THE QUESTIONS:");
+  Logger.log(pubUrl);
   Logger.log("=======================================================\\n");
 
   return pubUrl;
-}
-
-// Build functions for each domain
-function buildDomain1Form() { buildFormForDomain("1.0", "Network Fundamentals"); }
-function buildDomain2Form() { buildFormForDomain("2.0", "Network Access"); }
-function buildDomain3Form() { buildFormForDomain("3.0", "IP Connectivity"); }
-function buildDomain4Form() { buildFormForDomain("4.0", "IP Services"); }
-function buildDomain5Form() { buildFormForDomain("5.0", "Security Fundamentals"); }
-function buildDomain6Form() { buildFormForDomain("6.0", "Automation and Programmability"); }
-
-// Master builder function
-function buildAllForms() {
-  const sheet = getOrCreateMasterSheet();
-  Logger.log("Master Sheet URL: " + sheet.getUrl());
-  
-  buildDomain1Form();
-  buildDomain2Form();
-  buildDomain3Form();
-  buildDomain4Form();
-  buildDomain5Form();
-  buildDomain6Form();
-  
-  Logger.log("🎉 ALL 6 FORMS GENERATED FROM GITHUB REPO!");
 }
