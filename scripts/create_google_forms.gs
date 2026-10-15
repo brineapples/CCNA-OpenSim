@@ -98,7 +98,7 @@ function generateReviewForms() {
           prompt: "A router receives an IPv4 packet destined for 192.168.1.130. Its routing table contains:\nS 192.168.1.128/26 via 10.1.1.1\nO 192.168.1.128/27 via 10.2.2.2\nO 192.168.1.0/24 via 10.3.3.3\nThrough which next hop does the router forward the packet?",
           options: "A) 10.1.1.1 (/26 Static Route)\nB) 10.2.2.2 (/27 OSPF Route - Longest Prefix Match) [CORRECT]\nC) 10.3.3.3 (/24 OSPF Route)\nD) 10.4.4.4 (Default gateway)",
           explanation: "Router forwarding decisions ALWAYS evaluate Longest Prefix Match (most specific mask) first before considering Administrative Distance or Metric. /27 is longer than /26 or /24.",
-          reference": "CCNA 200-301 OCG Vol 1, Ch 16"
+          "reference": "CCNA 200-301 OCG Vol 1, Ch 16"
         },
         {
           id: "q-3-4-002",
@@ -106,7 +106,7 @@ function generateReviewForms() {
           prompt: "Two directly connected routers running OSPFv2 are stuck in the 'EXSTART' state. What is the most likely cause?",
           options: "A) The maximum transmission unit (MTU) does not match between connecting interfaces [CORRECT]\nB) The OSPF Process IDs do not match\nC) The routers have different hostnames\nD) The dead timer is set to four times the hello timer",
           explanation: "In ExStart state, neighbors exchange DBD packets. If MTUs do not match and 'ip ospf mtu-ignore' is not configured, the adjacency freezes in ExStart.",
-          reference": "CCNA 200-301 OCG Vol 2, Ch 20"
+          "reference": "CCNA 200-301 OCG Vol 2, Ch 20"
         }
       ]
     },
@@ -120,7 +120,7 @@ function generateReviewForms() {
           prompt: "Which Cisco IOS command keyword enables Port Address Translation (PAT) when translating internal private addresses to a single public IP address assigned to interface GigabitEthernet 0/1?",
           options: "A) ip nat inside source list 1 interface gigabitethernet 0/1 overload [CORRECT]\nB) ip nat inside source list 1 interface gigabitethernet 0/1 pat-enable\nC) ip nat pool PUBLIC_POOL 203.0.113.1 203.0.113.1 netmask 255.255.255.252\nD) ip nat inside source static tcp 192.168.1.10 80 203.0.113.1 80",
           explanation: "The 'overload' keyword instructs Cisco IOS to track source L4 port numbers, enabling Port Address Translation (PAT).",
-          reference": "CCNA 200-301 OCG Vol 2, Ch 10"
+          "reference": "CCNA 200-301 OCG Vol 2, Ch 10"
         }
       ]
     },
@@ -134,7 +134,7 @@ function generateReviewForms() {
           prompt: "Which Layer 2 security feature relies on the DHCP Snooping binding database to inspect ARP requests and replies, preventing ARP poisoning and MitM attacks?",
           options: "A) Port Security\nB) Dynamic ARP Inspection (DAI) [CORRECT]\nC) BPDU Guard\nD) Storm Control",
           explanation: "DAI intercepts ARP packets on untrusted ports and validates IP-to-MAC bindings against the DHCP Snooping database.",
-          reference": "CCNA 200-301 OCG Vol 2, Ch 7"
+          "reference": "CCNA 200-301 OCG Vol 2, Ch 7"
         }
       ]
     },
@@ -148,7 +148,7 @@ function generateReviewForms() {
           prompt: "Under the CCNA v1.1 blueprint, which network operations capability exemplifies predictive AI in enterprise controller platforms such as Cisco Catalyst Center?",
           options: "A) Generating Jinja2 configuration templates\nB) Analyzing historical Wi-Fi telemetry and baselines to forecast anomalies and AP capacity saturation before users experience degraded service [CORRECT]\nC) Converting natural language user prompts into CLI commands\nD) Executing Python scripts to auto-commit Git merges",
           explanation: "Predictive AI models analyze historical telemetry to establish baselines and forecast future degradation before user impact occurs.",
-          reference": "CCNA 200-301 v1.1 Topic 6.4"
+          "reference": "CCNA 200-301 v1.1 Topic 6.4"
         },
         {
           id: "q-6-6-001",
@@ -156,7 +156,7 @@ function generateReviewForms() {
           prompt: "Which statement accurately contrasts Terraform with Ansible in modern network infrastructure automation?",
           options: "A) Terraform is agent-based while Ansible requires no agent\nB) Terraform uses declarative HCL and state files (.tfstate) to manage lifecycle, whereas Ansible executes YAML playbooks over SSH [CORRECT]\nC) Ansible only manages cloud resources\nD) Terraform does not support idempotency",
           explanation: "Terraform uses declarative HCL with state files (.tfstate). Ansible is agentless over SSH using YAML playbooks.",
-          reference": "CCNA 200-301 v1.1 Topic 6.6"
+          "reference": "CCNA 200-301 v1.1 Topic 6.6"
         }
       ]
     }

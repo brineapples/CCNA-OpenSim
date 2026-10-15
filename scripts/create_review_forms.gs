@@ -302,13 +302,7 @@ function generateReviewForms() {
           "SCENARIO:\n" +
           "An administrator wants to configure an access switch port connected to both an IP phone and an employee PC. The PC should be in VLAN 10 and the IP phone in VLAN 150. Which command sequence correctly configures the port?\n\n" +
           "CHOICES & CORRECT ANSWER:\n" +
-          "  [CORRECT] A) switchport mode access
-switchport access vlan 10
-switchport voice vlan 150\n  [ ] B) switchport mode trunk
-switchport trunk allowed vlan 10,150\n  [ ] C) switchport mode multi
-switchport data vlan 10
-switchport aux vlan 150\n  [ ] D) switchport access vlan 10
-switchport trunk native vlan 150\n\n" +
+          "  [CORRECT] A) switchport mode access\n     switchport access vlan 10\n     switchport voice vlan 150\n  [ ] B) switchport mode trunk\n     switchport trunk allowed vlan 10,150\n  [ ] C) switchport mode multi\n     switchport data vlan 10\n     switchport aux vlan 150\n  [ ] D) switchport access vlan 10\n     switchport trunk native vlan 150\n\n" +
           "EXPLANATION:\n" +
           "To configure a port for both data and voice, configure 'switchport mode access', assign the PC's VLAN with 'switchport access vlan 10', and the IP phone's auxiliary VLAN with 'switchport voice vlan 150'. CDP/LLDP informs the phone of its voice VLAN so voice frames are tagged with 802.1Q while PC frames remain untagged."
         );

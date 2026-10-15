@@ -129,9 +129,16 @@ Object.keys(domainGroups).forEach((domainId) => {
   auditSample.forEach((q, idx) => {
     let optText = '';
     if (q.options) {
-      optText = q.options.map(o => `  [${o.isCorrect ? 'CORRECT' : ' '}] ${o.id}) ${o.text}`).join('\\n');
+      optText = q.options.map(o => {
+        const safeText = (o.text || '').replace(/\r?\n/g, '\\n     ');
+        return `  [${o.isCorrect ? 'CORRECT' : ' '}] ${o.id}) ${safeText}`;
+      }).join('\\n');
     } else if (q.pairs) {
-      optText = q.pairs.map(p => `  Target: ${p.target} -> Match: ${p.match}`).join('\\n');
+      optText = q.pairs.map(p => {
+        const safeTarget = String(p.target || '').replace(/\r?\n/g, ' ');
+        const safeMatch = String(p.match || '').replace(/\r?\n/g, ' ');
+        return `  Target: ${safeTarget} -> Match: ${safeMatch}`;
+      }).join('\\n');
     }
 
     const snippetText = q.cliSnippet ? `\\n\\nCLI Output:\\n${q.cliSnippet.replace(/\n/g, '\\n')}` : '';
