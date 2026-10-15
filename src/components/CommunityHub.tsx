@@ -35,7 +35,7 @@ export const CommunityHub: React.FC<CommunityHubProps> = ({
           Help Us Build a 400-Question Free Question Bank
         </h1>
         <p className="text-sm md:text-base text-slate-300 max-w-2xl leading-relaxed">
-          CCNA OpenSim is 100% open-source and community-vetted. To avoid question fatigue, reviews are partitioned into <strong className="text-cyan-300">6 Smart Domain Forms</strong> where you can audit bite-sized 5-to-10 question clusters in minutes.
+          CCNA OpenSim is 100% open-source and community-vetted. To avoid question fatigue, reviews are partitioned into <strong className="text-cyan-300">six forms</strong> where you can audit bite-sized 5-to-10 question clusters in minutes.
         </p>
 
         {/* Global Stats */}
@@ -88,12 +88,12 @@ export const CommunityHub: React.FC<CommunityHubProps> = ({
         </div>
       </div>
 
-      {/* The 6 Domain Forms List */}
+      {/* The 6 Forms List */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-white flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-cyan-400" />
-            <span>Select a Domain Smart Form to Audit</span>
+            <span>Select a Form to Audit</span>
           </h3>
           <button
             onClick={onBackToExam}
@@ -137,7 +137,7 @@ export const CommunityHub: React.FC<CommunityHubProps> = ({
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950 hover:bg-cyan-900 border border-cyan-800 text-cyan-300 text-xs font-medium transition shadow-sm"
                 >
-                  <span>Open Audit Form</span>
+                  <span>Open Form</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
