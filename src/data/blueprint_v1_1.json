@@ -1,0 +1,116 @@
+{
+  "version": "1.1",
+  "examCode": "200-301",
+  "totalDurationMinutes": 120,
+  "passingScore": 825,
+  "maxScore": 1000,
+  "domains": [
+    {
+      "id": "1.0",
+      "name": "Network Fundamentals",
+      "weight": 0.20,
+      "color": "cyan",
+      "targetQuestions": 80,
+      "subtopics": [
+        { "code": "1.1", "title": "Explain role and function of network components (Routers, L2/L3 Switches, Firewalls/IPS, APs, Controllers, Endpoints, Servers, PoE)" },
+        { "code": "1.2", "title": "Describe characteristics of network topology architectures (Two-tier, Three-tier, Spine-leaf, WAN, SOHO, Cloud)" },
+        { "code": "1.3", "title": "Compare physical interface and cabling types (Single-mode, Multimode, Copper, Point-to-point)" },
+        { "code": "1.4", "title": "Identify interface and cable issues (Collisions, errors, duplex/speed mismatch)" },
+        { "code": "1.5", "title": "Compare TCP to UDP (Connection-oriented, windowing, reliability)" },
+        { "code": "1.6", "title": "Configure and verify IPv4 addressing and subnetting" },
+        { "code": "1.7", "title": "Describe private IPv4 addressing (RFC 1918)" },
+        { "code": "1.8", "title": "Configure and verify IPv6 addressing and prefix" },
+        { "code": "1.9", "title": "Describe IPv6 address types (Global Unicast, Unique Local, Link Local, Anycast, Multicast, EUI-64)" },
+        { "code": "1.10", "title": "Verify IP parameters for Client OS (Windows, Mac OS, Linux)" },
+        { "code": "1.11", "title": "Describe wireless principles (Nonoverlapping channels, SSID, RF, Encryption)" },
+        { "code": "1.12", "title": "Explain virtualization fundamentals (Server virtualization, containers, and VRFs)" },
+        { "code": "1.13", "title": "Describe switching concepts (MAC learning, aging, frame flooding, frame switching)" }
+      ]
+    },
+    {
+      "id": "2.0",
+      "name": "Network Access",
+      "weight": 0.20,
+      "color": "blue",
+      "targetQuestions": 80,
+      "subtopics": [
+        { "code": "2.1", "title": "Configure and verify VLANs (Access ports data/voice, Default VLAN, InterVLAN)" },
+        { "code": "2.2", "title": "Configure and verify interswitch connectivity (Trunk ports, 802.1Q, Native VLAN)" },
+        { "code": "2.3", "title": "Configure and verify Layer 2 discovery protocols (CDP and LLDP)" },
+        { "code": "2.4", "title": "Configure and verify EtherChannel (Layer 2/Layer 3 LACP)" },
+        { "code": "2.5", "title": "Interpret basic operations of Rapid PVST+ (Root bridge, Root port, PortFast, BPDU Guard)" },
+        { "code": "2.6", "title": "Describe Cisco Wireless Architectures and AP modes" },
+        { "code": "2.7", "title": "Describe physical infrastructure connections of WLAN components (AP, WLC, LAG)" },
+        { "code": "2.8", "title": "Describe network device management access (Console, SSH, Telnet, AAA, Cloud-managed)" },
+        { "code": "2.9", "title": "Interpret wireless LAN GUI configuration for client connectivity" }
+      ]
+    },
+    {
+      "id": "3.0",
+      "name": "IP Connectivity",
+      "weight": 0.25,
+      "color": "emerald",
+      "targetQuestions": 100,
+      "subtopics": [
+        { "code": "3.1", "title": "Interpret components of routing table (Protocol codes, prefix, mask, next hop, AD, metric)" },
+        { "code": "3.2", "title": "Determine how a router makes forwarding decisions (Longest prefix match, AD, metric)" },
+        { "code": "3.3", "title": "Configure and verify IPv4 and IPv6 static routing (Default, network, host, floating static)" },
+        { "code": "3.4", "title": "Configure and verify single-area OSPFv2 (Adjacencies, DR/BDR, Router ID, point-to-point)" },
+        { "code": "3.5", "title": "Describe purpose, functions, and concepts of First Hop Redundancy Protocols (HSRP)" }
+      ]
+    },
+    {
+      "id": "4.0",
+      "name": "IP Services",
+      "weight": 0.10,
+      "color": "amber",
+      "targetQuestions": 40,
+      "subtopics": [
+        { "code": "4.1", "title": "Configure and verify inside source NAT using static and pools (PAT / Overload)" },
+        { "code": "4.2", "title": "Configure and verify NTP operating in client and server mode" },
+        { "code": "4.3", "title": "Explain the role of DHCP and DNS within the network" },
+        { "code": "4.4", "title": "Explain the function of SNMP in network operations (v2c vs v3, Traps vs Informs)" },
+        { "code": "4.5", "title": "Describe syslog features (Severity levels 0-7, facilities)" },
+        { "code": "4.6", "title": "Configure and verify DHCP client and relay (ip helper-address)" },
+        { "code": "4.7", "title": "Explain forwarding per-hop behavior for QoS (Classification, marking, queuing, policing, shaping)" },
+        { "code": "4.8", "title": "Configure network devices for remote access using SSH" },
+        { "code": "4.9", "title": "Describe capabilities and functions of TFTP/FTP in the network" }
+      ]
+    },
+    {
+      "id": "5.0",
+      "name": "Security Fundamentals",
+      "weight": 0.15,
+      "color": "rose",
+      "targetQuestions": 60,
+      "subtopics": [
+        { "code": "5.1", "title": "Define key security concepts (Threats, vulnerabilities, exploits, mitigations)" },
+        { "code": "5.2", "title": "Describe security program elements (User awareness, physical access control)" },
+        { "code": "5.3", "title": "Configure and verify device access control using local passwords" },
+        { "code": "5.4", "title": "Describe password policy elements, complexity, and alternatives (MFA, certificates, biometrics)" },
+        { "code": "5.5", "title": "Describe IPsec remote access and site-to-site VPNs" },
+        { "code": "5.6", "title": "Configure and verify Access Control Lists (Standard and Extended ACLs)" },
+        { "code": "5.7", "title": "Configure and verify Layer 2 security features (DHCP snooping, DAI, port security)" },
+        { "code": "5.8", "title": "Compare Authentication, Authorization, and Accounting (AAA) concepts" },
+        { "code": "5.9", "title": "Describe wireless security protocols (WPA, WPA2, WPA3)" },
+        { "code": "5.10", "title": "Configure and verify WLAN within GUI using WPA2 PSK" }
+      ]
+    },
+    {
+      "id": "6.0",
+      "name": "Automation and Programmability",
+      "weight": 0.10,
+      "color": "purple",
+      "targetQuestions": 40,
+      "subtopics": [
+        { "code": "6.1", "title": "Explain how automation impacts network management" },
+        { "code": "6.2", "title": "Compare traditional networks with controller-based networking (SDN)" },
+        { "code": "6.3", "title": "Describe software-defined architecture (Overlay, underlay, fabric, Northbound/Southbound APIs)" },
+        { "code": "6.4", "title": "Explain AI (generative and predictive) and machine learning in network operations" },
+        { "code": "6.5", "title": "Describe characteristics of REST-based APIs (CRUD, HTTP verbs, JSON encoding)" },
+        { "code": "6.6", "title": "Recognize capabilities of configuration management (Ansible and Terraform)" },
+        { "code": "6.7", "title": "Recognize components of JSON-encoded data" }
+      ]
+    }
+  ]
+}

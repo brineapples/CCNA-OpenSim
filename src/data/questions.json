@@ -1,0 +1,244 @@
+[
+  {
+    "id": "q-1-1-001",
+    "domainId": "1.0",
+    "subtopicCode": "1.1",
+    "subtopicName": "Explain role and function of network components",
+    "type": "single-choice",
+    "prompt": "An administrator is designing a campus network and needs a device that inspects traffic up to Layer 7, detects zero-day exploits, and decrypts TLS traffic for malware inspection. Which component is required?",
+    "options": [
+      { "id": "A", "text": "Layer 3 Distribution Switch", "isCorrect": false },
+      { "id": "B", "text": "Next-Generation Firewall (NGFW)", "isCorrect": true },
+      { "id": "C", "text": "Wireless LAN Controller (WLC)", "isCorrect": false },
+      { "id": "D", "text": "Stateful Packet Inspection (SPI) Router", "isCorrect": false }
+    ],
+    "explanation": "Next-Generation Firewalls (NGFW) provide deep packet inspection up to Layer 7 (Application layer), integrated Intrusion Prevention Systems (IPS), TLS/SSL decryption, and advanced threat intelligence, unlike traditional L3 switches or legacy SPI routers.",
+    "reference": "Cisco Press CCNA 200-301 Official Cert Guide Vol 1, Ch 1",
+    "difficulty": 2,
+    "fidelityScore": 4.8,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-1-6-001",
+    "domainId": "1.0",
+    "subtopicCode": "1.6",
+    "subtopicName": "Configure and verify IPv4 addressing and subnetting",
+    "type": "single-choice",
+    "prompt": "A network engineer must allocate a subnet from 172.16.0.0/16 that supports at least 58 usable host IP addresses while minimizing wasted address space. Which prefix length should be selected?",
+    "options": [
+      { "id": "A", "text": "/25", "isCorrect": false },
+      { "id": "B", "text": "/26", "isCorrect": true },
+      { "id": "C", "text": "/27", "isCorrect": false },
+      { "id": "D", "text": "/28", "isCorrect": false }
+    ],
+    "explanation": "To support 58 usable hosts, calculate 2^h - 2 >= 58. For h=5 (mask /27): 2^5 - 2 = 30 hosts (insufficient). For h=6 (mask /26): 2^6 - 2 = 62 usable hosts. A /26 provides 62 usable hosts, which satisfies the requirement and minimizes wasted space compared to /25 (126 hosts).",
+    "reference": "CCNA 200-301 OCG Vol 1, Subnetting Practice",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-1-9-001",
+    "domainId": "1.0",
+    "subtopicCode": "1.9",
+    "subtopicName": "Describe IPv6 address types",
+    "type": "drag-and-drop",
+    "prompt": "Drag each IPv6 address prefix to its corresponding IPv6 address type.",
+    "pairs": [
+      { "target": "Link-Local", "match": "fe80::/10" },
+      { "target": "Unique Local (Private)", "match": "fc00::/7" },
+      { "target": "Global Unicast", "match": "2000::/3" },
+      { "target": "Multicast", "match": "ff00::/8" }
+    ],
+    "explanation": "fe80::/10 is link-local (non-routable outside the local link). fc00::/7 (commonly fd00::/8) is unique local (equivalent to IPv4 RFC 1918 private space). 2000::/3 represents all routable global unicast addresses. ff00::/8 is the reserved prefix for multicast.",
+    "reference": "CCNA 200-301 OCG Vol 1, IPv6 Addressing",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-1-12-001",
+    "domainId": "1.0",
+    "subtopicCode": "1.12",
+    "subtopicName": "Explain virtualization fundamentals (server virtualization, containers, and VRFs)",
+    "type": "single-choice",
+    "prompt": "A service provider needs to host two separate enterprise clients on a single physical core router. Both clients use overlapping IP address space (10.0.0.0/8). Which virtualization technology segments the routing table on the router?",
+    "options": [
+      { "id": "A", "text": "VLAN (Virtual Local Area Network)", "isCorrect": false },
+      { "id": "B", "text": "VRF (Virtual Routing and Forwarding)", "isCorrect": true },
+      { "id": "C", "text": "Type 1 Hypervisor", "isCorrect": false },
+      { "id": "D", "text": "Docker Container Engine", "isCorrect": false }
+    ],
+    "explanation": "VRF (Virtual Routing and Forwarding) functions like a virtual router inside a physical router, allowing multiple instances of routing tables to coexist simultaneously. This permits overlapping IP addresses without conflict. (Note: VRFs are an explicit topic in the CCNA v1.1 blueprint).",
+    "reference": "CCNA 200-301 v1.1 Topic 1.12",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-2-2-001",
+    "domainId": "2.0",
+    "subtopicCode": "2.2",
+    "subtopicName": "Configure and verify interswitch connectivity",
+    "type": "multiple-choice",
+    "prompt": "An administrator executes 'show interfaces trunk' on Switch A and observes that interface Gi0/1 is missing from the trunk list. What are two possible causes? (Choose two.)",
+    "cliSnippet": "SwitchA# show interfaces gigabitEthernet 0/1 switchport\nName: Gi0/1\nSwitchport: Enabled\nAdministrative Mode: dynamic desirable\nOperational Mode: static access\nAdministrative Trunking Encapsulation: dot1q\nNegotiation of Trunking: On\nAccess Mode VLAN: 10 (Sales)",
+    "options": [
+      { "id": "A", "text": "The remote switch port is set to 'switchport mode access'.", "isCorrect": true },
+      { "id": "B", "text": "The native VLAN has not been changed from default VLAN 1.", "isCorrect": false },
+      { "id": "C", "text": "The remote switch port is set to 'switchport mode dynamic auto'.", "isCorrect": false },
+      { "id": "D", "text": "DTP negotiation failed to form a trunk because the remote side is configured as access.", "isCorrect": true },
+      { "id": "E", "text": "VLAN 10 is administratively shut down.", "isCorrect": false }
+    ],
+    "explanation": "When an interface is in 'dynamic desirable' mode, it actively attempts to negotiate trunking via DTP. If the remote port is statically set to access mode ('switchport mode access'), DTP will not establish a trunk and the operational mode remains static access.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 9",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-2-5-001",
+    "domainId": "2.0",
+    "subtopicCode": "2.5",
+    "subtopicName": "Interpret basic operations of Rapid PVST+",
+    "type": "single-choice",
+    "prompt": "In an 802.1w Rapid Spanning Tree Protocol (RSTP / Rapid PVST+) topology, which port state corresponds to the legacy 802.1D Blocking, Listening, and Disabled states?",
+    "options": [
+      { "id": "A", "text": "Discarding", "isCorrect": true },
+      { "id": "B", "text": "Learning", "isCorrect": false },
+      { "id": "C", "text": "Forwarding", "isCorrect": false },
+      { "id": "D", "text": "Alternate", "isCorrect": false }
+    ],
+    "explanation": "802.1w RSTP collapsed the 802.1D Disabled, Blocking, and Listening states into a single port state: 'Discarding'. The only three operational port states in RSTP are Discarding, Learning, and Forwarding.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 11",
+    "difficulty": 2,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-2-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.2",
+    "subtopicName": "Determine how a router makes a forwarding decision by default",
+    "type": "single-choice",
+    "prompt": "A router receives an IPv4 packet destined for 192.168.1.130. Its routing table contains the following entries. Through which next hop does the router forward the packet?",
+    "cliSnippet": "Codes: C - connected, S - static, R - RIP, O - OSPF\n\nS    192.168.1.128/26 [1/0] via 10.1.1.1\nO    192.168.1.128/27 [110/20] via 10.2.2.2\nO    192.168.1.0/24 [110/10] via 10.3.3.3\nS*   0.0.0.0/0 [1/0] via 10.4.4.4",
+    "options": [
+      { "id": "A", "text": "10.1.1.1 (Static route /26 because it has lower administrative distance of 1)", "isCorrect": false },
+      { "id": "B", "text": "10.2.2.2 (OSPF route /27 because it represents the Longest Prefix Match)", "isCorrect": true },
+      { "id": "C", "text": "10.3.3.3 (OSPF route /24 because it has a lower metric of 10)", "isCorrect": false },
+      { "id": "D", "text": "10.4.4.4 (Default gateway)", "isCorrect": false }
+    ],
+    "explanation": "Router forwarding decisions ALWAYS evaluate Longest Prefix Match (most specific mask) first before considering Administrative Distance or Metric. 192.168.1.130 falls within 192.168.1.128/27 (range .128 to .159). Because /27 (27 bits) is longer than /26 (26 bits) and /24 (24 bits), the /27 route via 10.2.2.2 is selected.",
+    "reference": "CCNA 200-301 OCG Vol 1, Ch 16 Routing Logic",
+    "difficulty": 4,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-3-4-simlet-001",
+    "domainId": "3.0",
+    "subtopicCode": "3.4",
+    "subtopicName": "Configure and verify single area OSPFv2",
+    "type": "simlet",
+    "prompt": "You are troubleshooting why Router R1 is not exchanging OSPF routes with its neighbor R2 over GigabitEthernet0/0. Use the interactive terminal to inspect R1 and determine the root cause.",
+    "simlet": {
+      "deviceName": "R1",
+      "promptString": "R1#",
+      "commandResponses": {
+        "show ip ospf interface gigabitethernet 0/0": "GigabitEthernet0/0 is up, line protocol is up\n  Internet Address 10.0.0.1/24, Area 0\n  Attached via Interface Enable\n  Process ID 1, Router ID 1.1.1.1, Network Type BROADCAST, Cost: 1\n  Transmit Delay is 1 sec, State DR, Priority 1\n  Designated Router (ID) 1.1.1.1, Interface address 10.0.0.1\n  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5\n    oob-resync timeout 40\n    Hello due in 00:00:03\n  Supports interfaces matching Authentication none",
+        "show ip ospf neighbor": "Neighbor ID     Pri   State           Dead Time   Address         Interface\n2.2.2.2           1   INIT/DROTHER    00:00:32    10.0.0.2        GigabitEthernet0/0",
+        "show ip interface brief": "Interface              IP-Address      OK? Method Status                Protocol\nGigabitEthernet0/0     10.0.0.1        YES manual up                    up      \nGigabitEthernet0/1     192.168.10.1    YES manual up                    up      \nLoopback0              1.1.1.1         YES manual up                    up      ",
+        "show run interface gigabitethernet 0/0": "interface GigabitEthernet0/0\n ip address 10.0.0.1 255.255.255.0\n ip ospf 1 area 0\n ip ospf hello-interval 10\n ip access-group BLOCK_OSPF in\nend",
+        "show access-lists": "Extended IP access list BLOCK_OSPF\n    10 deny ospf any any (14 matches)\n    20 permit ip any any (82 matches)"
+      }
+    },
+    "options": [
+      { "id": "A", "text": "The OSPF Hello and Dead timers do not match between R1 and R2.", "isCorrect": false },
+      { "id": "B", "text": "An inbound access-list on R1's GigabitEthernet0/0 interface is dropping OSPF multicast traffic from R2.", "isCorrect": true },
+      { "id": "C", "text": "R1 and R2 are in different OSPF areas.", "isCorrect": false },
+      { "id": "D", "text": "The OSPF Process ID must match between R1 and R2.", "isCorrect": false }
+    ],
+    "explanation": "Running 'show ip ospf neighbor' shows neighbor 2.2.2.2 stuck in INIT state, meaning R1 receives hellos from R2, but R2 is not hearing R1's hellos or incoming OSPF packets are blocked. Inspecting 'show run interface gigabitethernet 0/0' reveals 'ip access-group BLOCK_OSPF in', and 'show access-lists' explicitly confirms 'deny ospf any any'.",
+    "reference": "CCNA 200-301 OCG Vol 2, OSPF Troubleshooting",
+    "difficulty": 4,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-4-1-001",
+    "domainId": "4.0",
+    "subtopicCode": "4.1",
+    "subtopicName": "Configure and verify inside source NAT using static and pools",
+    "type": "single-choice",
+    "prompt": "Which Cisco IOS command keyword enables Port Address Translation (PAT) when translating internal private addresses to a single public IP address assigned to interface GigabitEthernet 0/1?",
+    "options": [
+      { "id": "A", "text": "ip nat inside source list 1 interface gigabitethernet 0/1 overload", "isCorrect": true },
+      { "id": "B", "text": "ip nat inside source list 1 interface gigabitethernet 0/1 pat-enable", "isCorrect": false },
+      { "id": "C", "text": "ip nat pool PUBLIC_POOL 203.0.113.1 203.0.113.1 netmask 255.255.255.252", "isCorrect": false },
+      { "id": "D", "text": "ip nat inside source static tcp 192.168.1.10 80 203.0.113.1 80", "isCorrect": false }
+    ],
+    "explanation": "The 'overload' keyword on the 'ip nat inside source list' command instructs the Cisco router to use Port Address Translation (PAT). PAT tracks unique source TCP/UDP port numbers so up to ~65,000 internal connections can share a single public IP.",
+    "reference": "CCNA 200-301 OCG Vol 2, NAT Configuration",
+    "difficulty": 2,
+    "fidelityScore": 4.8,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-5-7-001",
+    "domainId": "5.0",
+    "subtopicCode": "5.7",
+    "subtopicName": "Configure and verify Layer 2 security features",
+    "type": "single-choice",
+    "prompt": "An administrator executes 'show mac address-table' on a Cisco Catalyst switch and notices multiple hosts receiving invalid IP default gateways. Which Layer 2 security feature relies on the DHCP Snooping binding database to inspect ARP requests and prevent ARP poisoning?",
+    "options": [
+      { "id": "A", "text": "Port Security", "isCorrect": false },
+      { "id": "B", "text": "Dynamic ARP Inspection (DAI)", "isCorrect": true },
+      { "id": "C", "text": "BPDU Guard", "isCorrect": false },
+      { "id": "D", "text": "Storm Control", "isCorrect": false }
+    ],
+    "explanation": "Dynamic ARP Inspection (DAI) is designed to mitigate ARP spoofing/poisoning and man-in-the-middle attacks on the local broadcast domain. DAI validates ARP requests and replies against the trusted DHCP Snooping binding table.",
+    "reference": "CCNA 200-301 OCG Vol 2, Ch 7 Layer 2 Security",
+    "difficulty": 3,
+    "fidelityScore": 4.9,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-6-4-001",
+    "domainId": "6.0",
+    "subtopicCode": "6.4",
+    "subtopicName": "Explain AI (generative and predictive) and machine learning in network operations",
+    "type": "single-choice",
+    "prompt": "Under the CCNA v1.1 blueprint, which network operations capability exemplifies predictive AI in Cisco enterprise controller platforms such as Cisco Catalyst Center (formerly DNA Center)?",
+    "options": [
+      { "id": "A", "text": "Generating Jinja2 configuration templates for newly connected access switches", "isCorrect": false },
+      { "id": "B", "text": "Analyzing historical Wi-Fi telemetry and baselines to forecast anomalies and AP capacity saturation before users experience degraded service", "isCorrect": true },
+      { "id": "C", "text": "Converting natural language user prompts into CLI commands via an interactive chatbot", "isCorrect": false },
+      { "id": "D", "text": "Executing Python scripts to auto-commit Git merges for network change windows", "isCorrect": false }
+    ],
+    "explanation": "Predictive AI models ingest historical and real-time telemetry (KPIs, RF interference, throughput) to establish behavioral baselines and forecast future performance degradation or failures (e.g. Wi-Fi capacity saturation) before they affect clients. Generative AI involves creating content or configuration code.",
+    "reference": "CCNA 200-301 v1.1 Topic 6.4 (AI & ML in Network Operations)",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  },
+  {
+    "id": "q-6-6-001",
+    "domainId": "6.0",
+    "subtopicCode": "6.6",
+    "subtopicName": "Recognize the capabilities of configuration management mechanisms such as Ansible and Terraform",
+    "type": "single-choice",
+    "prompt": "Which statement accurately contrasts Terraform with Ansible in modern network infrastructure automation?",
+    "options": [
+      { "id": "A", "text": "Terraform is agent-based requiring a software daemon installed on Cisco IOS XE, whereas Ansible requires no agent.", "isCorrect": false },
+      { "id": "B", "text": "Terraform uses declarative HashiCorp Configuration Language (HCL) and state files (.tfstate) to manage lifecycle, whereas Ansible primarily executes procedural/declarative YAML playbooks over SSH.", "isCorrect": true },
+      { "id": "C", "text": "Ansible only manages cloud resources, while Terraform only configures on-premises Cisco switch ports.", "isCorrect": false },
+      { "id": "D", "text": "Terraform does not support idempotency, whereas Ansible is strictly idempotent.", "isCorrect": false }
+    ],
+    "explanation": "Terraform uses declarative HCL (HashiCorp Configuration Language) and tracks deployed infrastructure through state files (.tfstate). Ansible is agentless, communicating primarily over SSH using YAML playbooks. Both are idempotent. (Terraform is a key addition to CCNA v1.1).",
+    "reference": "CCNA 200-301 v1.1 Topic 6.6",
+    "difficulty": 3,
+    "fidelityScore": 5.0,
+    "contributor": "CCNA OpenSim Community"
+  }
+]

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased font-sans selection:bg-cyan-500 selection:text-white min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Cisco CLI styling */
+.cli-terminal {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: #0b0f19;
+  color: #e2e8f0;
+}
+
+.cli-prompt {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.cli-command {
+  color: #f8fafc;
+}
+
+.cli-output {
+  color: #94a3b8;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
