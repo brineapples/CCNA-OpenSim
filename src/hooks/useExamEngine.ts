@@ -79,15 +79,36 @@ export function useExamEngine() {
 
   // Start a new exam
   const startExam = useCallback((domainFilter: DomainId | 'all' = 'all') => {
-    let pool = [...allQuestions];
-    if (domainFilter !== 'all') {
-      pool = pool.filter((q) => q.domainId === domainFilter);
+    let selectedQuestions: Question[] = [];
+
+    if (domainFilter === 'all') {
+      // CCNA Exam blueprint proportional sample (100 questions total)
+      const domainQuotas: Record<DomainId, number> = {
+        '1.0': 20, // 20%
+        '2.0': 20, // 20%
+        '3.0': 25, // 25%
+        '4.0': 10, // 10%
+        '5.0': 15, // 15%
+        '6.0': 10, // 10%
+      };
+
+      (Object.keys(domainQuotas) as DomainId[]).forEach((dId) => {
+        const domainPool = allQuestions
+          .filter((q) => q.domainId === dId)
+          .sort(() => Math.random() - 0.5);
+        selectedQuestions.push(...domainPool.slice(0, domainQuotas[dId]));
+      });
+
+      // Shuffle the combined 100 questions
+      selectedQuestions.sort(() => Math.random() - 0.5);
+    } else {
+      // Domain-specific practice drill (all questions in that domain)
+      selectedQuestions = allQuestions
+        .filter((q) => q.domainId === domainFilter)
+        .sort(() => Math.random() - 0.5);
     }
 
-    // Shuffle questions
-    const shuffled = [...pool].sort(() => Math.random() - 0.5);
-
-    setQuestions(shuffled);
+    setQuestions(selectedQuestions);
     setCurrentIndex(0);
     setAnswers({});
     setTimeRemaining(TOTAL_EXAM_SECONDS);
