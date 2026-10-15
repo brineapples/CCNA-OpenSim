@@ -13,14 +13,14 @@ export const CommunityHub: React.FC<CommunityHubProps> = ({
   totalVettedQuestions,
   onBackToExam,
 }) => {
-  // Placeholder Google Form links (User can configure their 6 published Google Form links)
+  // Live published Google Form audit links for CCNA v1.1 domains
   const formLinks: Record<string, string> = {
-    '1.0': 'https://forms.google.com/',
-    '2.0': 'https://forms.google.com/',
-    '3.0': 'https://forms.google.com/',
-    '4.0': 'https://forms.google.com/',
-    '5.0': 'https://forms.google.com/',
-    '6.0': 'https://forms.google.com/',
+    '1.0': 'https://docs.google.com/forms/d/e/1FAIpQLSd48XG-NDIOvwYg0hAcykn19wdmKQGIxyQ2sK0PjUzLJ2iuRA/viewform',
+    '2.0': 'https://docs.google.com/forms/d/e/1FAIpQLSdg_0VhCLThGl_w0aUlGllHSkWOk6tgYhPZcOKBWTay3t80CA/viewform',
+    '3.0': 'https://docs.google.com/forms/d/e/1FAIpQLSf_Ha5jnUiFEsmPECY5eVazOPXAJIyQ5-LtX5yE-3LbSPTJtw/viewform',
+    '4.0': 'https://docs.google.com/forms/d/e/1FAIpQLScfSzQKMWFIltQVhHKiCy3vG9MhFjdzS4bgQO8-q1HhJ-T38Q/viewform',
+    '5.0': 'https://docs.google.com/forms/d/e/1FAIpQLSdyTWWdxkHNpO0iIi6cn-Wth-spG_KLb1R4erm5NFbvvgV4Jw/viewform',
+    '6.0': 'https://docs.google.com/forms/d/e/1FAIpQLSfFVHwcxDVcn-XbhZ-q5Dtydx9qqcnghXSwQrSFhFS-4a3yPg/viewform',
   };
 
   return (
